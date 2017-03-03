@@ -24,5 +24,6 @@ int GetMilliSpan(int nTimeStart);
 /* Funcoes a implementar */
 double nearestPoints_DC(vector<Ponto> &vp, vector<Ponto> &vMP);
 double nearestPoints_BF(vector<Ponto> &vp, vector<Ponto> &vMP);
+double calculateDist(vector<Ponto> &vp);
 
 #endif

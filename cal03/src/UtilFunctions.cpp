@@ -7,7 +7,9 @@
 #include <time.h>
 #include <sys/timeb.h>
 #include <cmath>
+#include <iostream>
 
+using namespace std;
 /**
  * function to fill list 'lp' with 'Ponto' objects read from 'is'
  */
@@ -144,6 +146,7 @@ int GetMilliSpan(int nTimeStart)
 
 double nearestPoints_BF(vector<Ponto> &vp, vector<Ponto> &vMP){
 	double dist = 999999.0;
+
 	for(unsigned int i = 0; i < vp.size(); i++){
 		for(unsigned int j = 0; j < vp.size(); j++){
 			if(i == j && i < vp.size() && j < vp.size()){
@@ -163,9 +166,86 @@ double nearestPoints_BF(vector<Ponto> &vp, vector<Ponto> &vMP){
 			}
 		}
 	}
+
 	return dist;
 }
 
-double nearestPoints_DC(vector<Ponto> &vp, vector<Ponto> &vMP){
+double nearestPoints_DC(vector<Ponto> &vp, vector<Ponto> &vMP) {
+//	cout << "INITIAL" << endl;
 	double dist = 9999999.0;
+	unsigned int j = 0;
+
+//	cout << "SORT" << endl;
+
+	quickSortX(vp);
+//	cout << "CALCULATE" << endl;
+
+	dist = calculateDist(vp);
+//	cout << "END" << endl;
+
+	for (j = 0; j < vp.size(); j++) {
+		if (vp[j].x > (-dist / 2)) {
+			break;
+		}
+	}
+
+	while (vp[j].x < (dist / 2) && vp[j].x > (-dist / 2)
+			&& vp[j + 1].x < (dist / 2) && vp[j + 1].x > (-dist / 2)) {
+		if (dist > sqrt((comparaPontos(vp[j], vp[j + 1], X) * comparaPontos(vp[j], vp[j + 1], X)) + (comparaPontos(vp[j], vp[j + 1], Y) * comparaPontos(vp[j], vp[j + 1], Y))))
+			dist = sqrt((comparaPontos(vp[j], vp[j + 1], X) * comparaPontos(vp[j], vp[j + 1], X)) + (comparaPontos(vp[j], vp[j + 1], Y) * comparaPontos(vp[j], vp[j + 1], Y)));
+	}
+
+	return dist;
+}
+
+double calculateDist(vector<Ponto> &vp){
+	double dist = 999999.0, leftdist = 999999.0, rightdist = 999999.0;
+	int j = 0;
+	cout << "CALCULATE1" << endl;
+	cout << vp.size() <<endl;
+	if(vp.size() == 2){
+		cout << "CALCULATE: VPSIZE==2" << endl;
+		return sqrt((comparaPontos(vp[0],vp[1],X)*comparaPontos(vp[0],vp[1],X)) + (comparaPontos(vp[0],vp[1],Y)*comparaPontos(vp[0],vp[1],Y)));
+	}
+	else if(vp.size() == 3){
+		cout << "CALCULATE: VPSIZE==3" << endl;
+		dist = sqrt((comparaPontos(vp[0],vp[1],X)*comparaPontos(vp[0],vp[1],X)) + (comparaPontos(vp[0],vp[1],Y)*comparaPontos(vp[0],vp[1],Y)));
+		if (dist > sqrt((comparaPontos(vp[2],vp[1],X)*comparaPontos(vp[2],vp[1],X)) + (comparaPontos(vp[2],vp[1],Y)*comparaPontos(vp[2],vp[1],Y))))
+			dist = sqrt((comparaPontos(vp[2],vp[1],X)*comparaPontos(vp[2],vp[1],X)) + (comparaPontos(vp[2],vp[1],Y)*comparaPontos(vp[2],vp[1],Y)));
+		if (dist > sqrt((comparaPontos(vp[2],vp[1],X)*comparaPontos(vp[2],vp[1],X)) + (comparaPontos(vp[2],vp[1],Y)*comparaPontos(vp[2],vp[1],Y))))
+			dist = sqrt((comparaPontos(vp[2],vp[0],X)*comparaPontos(vp[2],vp[0],X)) + (comparaPontos(vp[2],vp[0],Y)*comparaPontos(vp[2],vp[0],Y)));
+		return dist;
+	}
+	else{
+//		cout << "CALCULATE: VPSIZE>3" << endl;
+
+
+		vector<Ponto> left, right;
+		for(unsigned int i = 0; i < vp.size()/2; i++){
+//			cout << "CALCULATE: VPSIZE>3.0" << endl;
+
+			left.push_back(vp[i]);
+		}
+		for(unsigned int i = vp.size()/2; i < vp.size(); i++){
+//			cout << "CALCULATE: VPSIZE>3.1" << endl;
+
+			right.push_back(vp[i]);
+		}
+//		cout << "CALCULATE: RECURSIVO" << endl;
+
+		leftdist = calculateDist(left);
+//		cout << "CALCULATE: RECURSIVO" << endl;
+
+		rightdist = calculateDist(right);
+//		cout << "CALCULATE: RECURSIVO FIM" << endl;
+
+	}
+	cout << leftdist<< " " << rightdist << " " <<dist <<endl;
+
+	if(leftdist < rightdist)
+		dist = leftdist;
+	else
+		dist = rightdist;
+	cout << leftdist<< " " << rightdist << " " <<dist <<endl;
+	return dist;
 }
