@@ -146,7 +146,7 @@ int GetMilliSpan(int nTimeStart)
 
 double nearestPoints_BF(vector<Ponto> &vp, vector<Ponto> &vMP){
 	double dist = 999999.0;
-
+	Ponto p1,p2;
 	for(unsigned int i = 0; i < vp.size(); i++){
 		for(unsigned int j = 0; j < vp.size(); j++){
 			if(i == j && i < vp.size() && j < vp.size()){
@@ -155,97 +155,103 @@ double nearestPoints_BF(vector<Ponto> &vp, vector<Ponto> &vMP){
 			}
 			if (dist > sqrt((comparaPontos(vp[i],vp[j],X)*comparaPontos(vp[i],vp[j],X)) + (comparaPontos(vp[i],vp[j],Y)*comparaPontos(vp[i],vp[j],Y)))){
 				dist = sqrt((comparaPontos(vp[i],vp[j],X)*comparaPontos(vp[i],vp[j],X)) + (comparaPontos(vp[i],vp[j],Y)*comparaPontos(vp[i],vp[j],Y)));
-				if(vMP.size() == 0){
-					vMP.push_back(vp[i]);
-					vMP.push_back(vp[j]);
-				}
-				else {
-					vMP[0] = vMP[i];
-					vMP[1] = vMP[j];
-				}
+				p1 = vp[i];
+				p2 = vp[j];
 			}
 		}
 	}
-
+	vMP.push_back(p1);
+	vMP.push_back(p2);
 	return dist;
 }
 
 double nearestPoints_DC(vector<Ponto> &vp, vector<Ponto> &vMP) {
-//	cout << "INITIAL" << endl;
-	double dist = 9999999.0;
-	unsigned int j = 0;
+	// TODO code must be placed here
+	quickSort(vp, 0, vp.size() -1, X);		// vp ordered by X coordinate
 
-//	cout << "SORT" << endl;
+	// call divide and conquer algorithm for 'vp' vector of Ponto's
+	Ponto p1, p2;
+	double dist = calculateDist(vp, p1, p2);
 
-	quickSortX(vp);
-//	cout << "CALCULATE" << endl;
-
-	dist = calculateDist(vp);
-//	cout << "END" << endl;
-
-	for (j = 0; j < vp.size(); j++) {
-		if (vp[j].x > (-dist / 2)) {
-			break;
-		}
-	}
-
-	while (vp[j].x < (dist / 2) && vp[j].x > (-dist / 2)
-			&& vp[j + 1].x < (dist / 2) && vp[j + 1].x > (-dist / 2)) {
-		if (dist > sqrt((comparaPontos(vp[j], vp[j + 1], X) * comparaPontos(vp[j], vp[j + 1], X)) + (comparaPontos(vp[j], vp[j + 1], Y) * comparaPontos(vp[j], vp[j + 1], Y))))
-			dist = sqrt((comparaPontos(vp[j], vp[j + 1], X) * comparaPontos(vp[j], vp[j + 1], X)) + (comparaPontos(vp[j], vp[j + 1], Y) * comparaPontos(vp[j], vp[j + 1], Y)));
-	}
-
-	return dist;
+	vMP.push_back(p1);		// save point 1
+	vMP.push_back(p2);		// save point 2
+	return dist;			// return minimum distance
 }
 
-double calculateDist(vector<Ponto> &vp){
+double calculateDist(vector<Ponto> &vp, Ponto &pLeft, Ponto &pRight) {
 	double dist = 999999.0, leftdist = 999999.0, rightdist = 999999.0;
-	int j = 0;
-	cout << "CALCULATE1" << endl;
-	cout << vp.size() <<endl;
+	int j = 0, middle =  vp.size() / 2;
+	vector<Ponto> vpl,vpr;
+	Ponto p1l,p2l,p1r,p2r;
+
 	if(vp.size() == 2){
-		cout << "CALCULATE: VPSIZE==2" << endl;
+		pLeft = vp[0];
+		pRight = vp[1];
 		return sqrt((comparaPontos(vp[0],vp[1],X)*comparaPontos(vp[0],vp[1],X)) + (comparaPontos(vp[0],vp[1],Y)*comparaPontos(vp[0],vp[1],Y)));
 	}
 	else if(vp.size() == 3){
-		cout << "CALCULATE: VPSIZE==3" << endl;
 		dist = sqrt((comparaPontos(vp[0],vp[1],X)*comparaPontos(vp[0],vp[1],X)) + (comparaPontos(vp[0],vp[1],Y)*comparaPontos(vp[0],vp[1],Y)));
-		if (dist > sqrt((comparaPontos(vp[2],vp[1],X)*comparaPontos(vp[2],vp[1],X)) + (comparaPontos(vp[2],vp[1],Y)*comparaPontos(vp[2],vp[1],Y))))
+		pLeft = vp[0];
+		pRight = vp[1];
+		if (dist > sqrt((comparaPontos(vp[2],vp[1],X)*comparaPontos(vp[2],vp[1],X)) + (comparaPontos(vp[2],vp[1],Y)*comparaPontos(vp[2],vp[1],Y)))){
 			dist = sqrt((comparaPontos(vp[2],vp[1],X)*comparaPontos(vp[2],vp[1],X)) + (comparaPontos(vp[2],vp[1],Y)*comparaPontos(vp[2],vp[1],Y)));
-		if (dist > sqrt((comparaPontos(vp[2],vp[1],X)*comparaPontos(vp[2],vp[1],X)) + (comparaPontos(vp[2],vp[1],Y)*comparaPontos(vp[2],vp[1],Y))))
+			pLeft = vp[0];
+			pRight = vp[1];
+		}
+		if (dist > sqrt((comparaPontos(vp[2],vp[0],X)*comparaPontos(vp[2],vp[0],X)) + (comparaPontos(vp[2],vp[0],Y)*comparaPontos(vp[2],vp[0],Y)))){
 			dist = sqrt((comparaPontos(vp[2],vp[0],X)*comparaPontos(vp[2],vp[0],X)) + (comparaPontos(vp[2],vp[0],Y)*comparaPontos(vp[2],vp[0],Y)));
+			pLeft = vp[0];
+			pRight = vp[1];
+		}
 		return dist;
 	}
 	else{
-//		cout << "CALCULATE: VPSIZE>3" << endl;
-
-
-		vector<Ponto> left, right;
-		for(unsigned int i = 0; i < vp.size()/2; i++){
-//			cout << "CALCULATE: VPSIZE>3.0" << endl;
-
-			left.push_back(vp[i]);
+		for(int i = 0; i < middle; i++){
+			vpl.push_back(vp[i]);
 		}
-		for(unsigned int i = vp.size()/2; i < vp.size(); i++){
-//			cout << "CALCULATE: VPSIZE>3.1" << endl;
-
-			right.push_back(vp[i]);
+		for(int i = middle; i < vp.size(); i++){
+			vpr.push_back(vp[i]);
 		}
-//		cout << "CALCULATE: RECURSIVO" << endl;
-
-		leftdist = calculateDist(left);
-//		cout << "CALCULATE: RECURSIVO" << endl;
-
-		rightdist = calculateDist(right);
-//		cout << "CALCULATE: RECURSIVO FIM" << endl;
-
+		leftdist = calculateDist(vpl,p1l,p2l);
+		rightdist = calculateDist(vpr,p1r,p2r);
 	}
-	cout << leftdist<< " " << rightdist << " " <<dist <<endl;
-
-	if(leftdist < rightdist)
+	if(leftdist < rightdist){
 		dist = leftdist;
-	else
+		pLeft = p1l;
+		pRight = p2l;
+	}
+	else{
 		dist = rightdist;
-	cout << leftdist<< " " << rightdist << " " <<dist <<endl;
+		pLeft = p2r;
+		pRight = p1r;
+	}
+	int indLeft = middle - 1;
+	int indRight = middle + 1;
+	while ((indLeft > 0) && (vp[middle].x - vp[indLeft].x < dist)){
+
+		indLeft--;
+	}
+	while ((indRight < (int) vp.size() - 1) && (vp[indRight].x - vp[middle].x < dist)) {
+		indRight++;
+	}
+	// strip area around middle point defined
+	quickSort(vp, indLeft, indRight, Y);// strip values ordered by Y coordinate
+
+	for (int i = indLeft; i < indRight; i++) {
+		for (int j = i + 1; j <= indRight; j++) {
+			if (vp[j].y - vp[i].y > dist)
+				break;
+			else {
+				double d = vp[i].distancia(vp[j]);
+				if (d < dist) {
+					pLeft = vp[i];		// save one point
+					pRight = vp[j];		// save the other point
+					dist = d;			// save minimum distance
+				}
+			}
+		}
+	}
+	quickSort(vp, indLeft, indRight, X);		// strip values reordered by X coordinate
 	return dist;
 }
+
