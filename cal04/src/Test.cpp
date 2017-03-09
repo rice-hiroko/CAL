@@ -5,31 +5,31 @@
 #include "Person.h"
 
 
-/*void createNetwork(Graph<Person> & net1)
+void createNetwork(Graph<Person> & net1)
 {
-Person p1("Ana",19);
-Person p2("Carlos",33);
-Person p3("Filipe", 20);
-Person p4("Ines", 18);
-Person p5("Maria", 24);
-Person p6("Rui",21);
-Person p7("Vasco",28);
-net1.addVertex(p1); net1.addVertex(p2);
-net1.addVertex(p3); net1.addVertex(p4);
-net1.addVertex(p5); net1.addVertex(p6); net1.addVertex(p7);
-net1.addEdge(p1,p2,0);
-net1.addEdge(p1,p3,0);
-net1.addEdge(p1,p4,0);
-net1.addEdge(p2,p5,0);
-net1.addEdge(p5,p6,0);
-net1.addEdge(p5,p1,0);
-net1.addEdge(p3,p6,0);
-net1.addEdge(p3,p7,0);
-net1.addEdge(p6,p2,0);
-}*/
+//	Person p1("Ana",19);
+//	Person p2("Carlos",33);
+//	Person p3("Filipe", 20);
+//	Person p4("Ines", 18);
+//	Person p5("Maria", 24);
+//	Person p6("Rui",21);
+//	Person p7("Vasco",28);
+//	net1.addVertex(p1); net1.addVertex(p2);
+//	net1.addVertex(p3); net1.addVertex(p4);
+//	net1.addVertex(p5); net1.addVertex(p6); net1.addVertex(p7);
+//	net1.addEdge(p1,p2,0);
+//	net1.addEdge(p1,p3,0);
+//	net1.addEdge(p1,p4,0);
+//	net1.addEdge(p2,p5,0);
+//	net1.addEdge(p5,p6,0);
+//	net1.addEdge(p5,p1,0);
+//	net1.addEdge(p3,p6,0);
+//	net1.addEdge(p3,p7,0);
+//	net1.addEdge(p6,p2,0);
+}
 
 void test_addVertex() {
-	/*Graph<Person> net1;
+	Graph<Person> net1;
 	Person p1("Ana",19);
 	Person p2("Carlos",33);
 	Person p3("Filipe", 20);
@@ -37,11 +37,11 @@ void test_addVertex() {
 	net1.addVertex(p1); net1.addVertex(p2);
 	net1.addVertex(p3); net1.addVertex(p4);
 	ASSERT_EQUAL(false, net1.addVertex(p2));
-	ASSERT_EQUAL(4, net1.getNumVertex());*/
+	ASSERT_EQUAL(4, net1.getNumVertex());
 }
 
 void test_removeVertex() {
-	/*Graph<Person> net1;
+	Graph<Person> net1;
 	Person p1("Ana",19);
 	Person p2("Carlos",33);
 	Person p3("Filipe", 20);
@@ -50,11 +50,11 @@ void test_removeVertex() {
 	net1.addVertex(p3); net1.addVertex(p4);
 	ASSERT_EQUAL(true, net1.removeVertex(p2));
 	ASSERT_EQUAL(false, net1.removeVertex(p2));
-	ASSERT_EQUAL(3, net1.getNumVertex());*/
+	ASSERT_EQUAL(3, net1.getNumVertex());
 }
 
 void test_addEdge() {
-	/*Graph<Person> net1;
+	Graph<Person> net1;
 	Person p1("Ana",19);
 	Person p2("Carlos",33);
 	Person p3("Filipe", 20);
@@ -65,11 +65,11 @@ void test_addEdge() {
 	ASSERT_EQUAL(true, net1.addEdge(p1,p2,0));
 	ASSERT_EQUAL(true, net1.addEdge(p1,p3,0));
 	ASSERT_EQUAL(true, net1.addEdge(p1,p4,0));
-	ASSERT_EQUAL(false, net1.addEdge(p2,p5,0));*/
+	ASSERT_EQUAL(false, net1.addEdge(p2,p5,0));
 }
 
 void test_removeEdge() {
-	/*Graph<Person> net1;
+	Graph<Person> net1;
 	Person p1("Ana",19);
 	Person p2("Carlos",33);
 	Person p3("Filipe", 20);
@@ -83,7 +83,7 @@ void test_removeEdge() {
 	ASSERT_EQUAL(true, net1.addEdge(p2,p4,0));
 	ASSERT_EQUAL(true, net1.removeEdge(p1,p3));
 	ASSERT_EQUAL(false, net1.removeEdge(p1,p5));
-	ASSERT_EQUAL(false, net1.removeEdge(p2,p3));*/
+	ASSERT_EQUAL(false, net1.removeEdge(p2,p3));
 }
 
 
