@@ -17,14 +17,21 @@ using namespace std;
 
 class RefuelStation {
 	int id;
-	float velocidade;
-
+	float x;
+	float y;
+	float z;
+	int velocity;
+	bool passed;
 
 public:
-	RefuelStation(int i,int v);
+	RefuelStation(int i, int v, float a, float b, float c);
 	int getId();
-	int getVelocidade();
-	void setVelocidade(int v);
+	int getVelocity();
+	void setVelocity(int v);
+	float getX();
+	float getY();
+	void setPassed();
+	bool getPassed();
 };
 
 

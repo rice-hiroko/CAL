@@ -5,8 +5,8 @@
  *      Author: João Tomé Saraiva
  */
 
-#ifndef SRC_BUS_H_
-#define SRC_BUS_H_
+#ifndef SRC_VEHICLE_H_
+#define SRC_VEHICLE_H_
 
 #pragma once
 
@@ -23,7 +23,7 @@ class Automovel {
 	float consume;
 
 public:
-	Automovel(int i,int b, int c);
+	Automovel(int i,float b, float c);
 	int getId();
 	float getBattery();
 	float getConsume();
@@ -32,4 +32,4 @@ public:
 	bool checkDist(int dis);
 };
 
-#endif /* SRC_BUS_H_ */
+#endif /* SRC_VEHICLE_H_ */

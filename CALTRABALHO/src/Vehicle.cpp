@@ -4,9 +4,9 @@
  *  Created on: 30/03/2017
  *      Author: João Tomé Saraiva
  */
-#include "Bus.h"
+#include "Vehicle.h"
 
-Automovel::Automovel(int i, int b, int c): id(i),battery(b),consume(c){}
+Automovel::Automovel(int i, float b, float c): id(i),battery(b),consume(c){}
 
 float Automovel::getBattery(){
 	return battery;
@@ -21,7 +21,10 @@ float Automovel::getConsume(){
 }
 
 void Automovel::setBattery(float b) {
-	battery = b;
+	if(b >= 100)
+		battery = 100;
+	else
+		battery = b;
 }
 
 void Automovel::setConsume(float c) {
@@ -29,12 +32,9 @@ void Automovel::setConsume(float c) {
 }
 
 bool Automovel::checkDist(int dist) {
-	if(battery -(consume * dist) > 0) {
-		cout << "Pass"<<endl;
-		this->setBattery(battery - (consume * dist));
+	if(battery -(consume * dist) >= 0) {
 		return true;
 	}
-	cout << "Refuel" << endl;
 	return false;
 }
 
