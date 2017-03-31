@@ -31,29 +31,29 @@ Graph<int> CreateTestGraph()
 
 
 	// distancias em kms
-	myGraph.addEdge(1, 2, calculateDist(myGraph.getVertex(1)->getX() - myGraph.getVertex(2)->getX(), myGraph.getVertex(1)->getY() - myGraph.getVertex(2)->getY()));
-	myGraph.addEdge(1, 3, calculateDist(myGraph.getVertex(1)->getX() - myGraph.getVertex(3)->getX(), myGraph.getVertex(1)->getY() - myGraph.getVertex(3)->getY()));
-	myGraph.addEdge(1, 7, calculateDist(myGraph.getVertex(1)->getX() - myGraph.getVertex(7)->getX(), myGraph.getVertex(1)->getY() - myGraph.getVertex(7)->getY()));
-	myGraph.addEdge(2, 4, calculateDist(myGraph.getVertex(2)->getX() - myGraph.getVertex(4)->getX(), myGraph.getVertex(2)->getY() - myGraph.getVertex(4)->getY()));
-	myGraph.addEdge(3, 8, calculateDist(myGraph.getVertex(3)->getX() - myGraph.getVertex(8)->getX(), myGraph.getVertex(3)->getY() - myGraph.getVertex(8)->getY()));
-	myGraph.addEdge(4, 6, calculateDist(myGraph.getVertex(4)->getX() - myGraph.getVertex(6)->getX(), myGraph.getVertex(4)->getY() - myGraph.getVertex(6)->getY()));
-	myGraph.addEdge(4, 5, calculateDist(myGraph.getVertex(4)->getX() - myGraph.getVertex(5)->getX(), myGraph.getVertex(4)->getY() - myGraph.getVertex(5)->getY()));
-	myGraph.addEdge(5, 10, calculateDist(myGraph.getVertex(5)->getX() - myGraph.getVertex(10)->getX(), myGraph.getVertex(5)->getY() - myGraph.getVertex(10)->getY()));
-	myGraph.addEdge(7, 6, calculateDist(myGraph.getVertex(7)->getX() - myGraph.getVertex(6)->getX(), myGraph.getVertex(7)->getY() - myGraph.getVertex(6)->getY()));
-	myGraph.addEdge(8, 9, calculateDist(myGraph.getVertex(9)->getX() - myGraph.getVertex(8)->getX(), myGraph.getVertex(9)->getY() - myGraph.getVertex(8)->getY()));
-	myGraph.addEdge(9, 5, calculateDist(myGraph.getVertex(9)->getX() - myGraph.getVertex(5)->getX(), myGraph.getVertex(9)->getY() - myGraph.getVertex(5)->getY()));
-	myGraph.addEdge(2, 1, calculateDist(myGraph.getVertex(1)->getX() - myGraph.getVertex(2)->getX(), myGraph.getVertex(1)->getY() - myGraph.getVertex(2)->getY()));
-	myGraph.addEdge(3, 1, calculateDist(myGraph.getVertex(1)->getX() - myGraph.getVertex(3)->getX(), myGraph.getVertex(1)->getY() - myGraph.getVertex(3)->getY()));
-	myGraph.addEdge(7, 1, calculateDist(myGraph.getVertex(1)->getX() - myGraph.getVertex(7)->getX(), myGraph.getVertex(1)->getY() - myGraph.getVertex(7)->getY()));
-	myGraph.addEdge(4, 2, calculateDist(myGraph.getVertex(2)->getX() - myGraph.getVertex(4)->getX(), myGraph.getVertex(2)->getY() - myGraph.getVertex(4)->getY()));
-	myGraph.addEdge(8, 3, calculateDist(myGraph.getVertex(3)->getX() - myGraph.getVertex(8)->getX(), myGraph.getVertex(3)->getY() - myGraph.getVertex(8)->getY()));
-	myGraph.addEdge(6, 4, calculateDist(myGraph.getVertex(4)->getX() - myGraph.getVertex(6)->getX(), myGraph.getVertex(4)->getY() - myGraph.getVertex(6)->getY()));
-	myGraph.addEdge(5, 4, calculateDist(myGraph.getVertex(4)->getX() - myGraph.getVertex(5)->getX(), myGraph.getVertex(4)->getY() - myGraph.getVertex(5)->getY()));
-	myGraph.addEdge(10, 5, calculateDist(myGraph.getVertex(5)->getX() - myGraph.getVertex(10)->getX(), myGraph.getVertex(5)->getY() - myGraph.getVertex(10)->getY()));
-	myGraph.addEdge(6, 7, calculateDist(myGraph.getVertex(7)->getX() - myGraph.getVertex(6)->getX(), myGraph.getVertex(7)->getY() - myGraph.getVertex(6)->getY()));
-	myGraph.addEdge(9, 8, calculateDist(myGraph.getVertex(9)->getX() - myGraph.getVertex(8)->getX(), myGraph.getVertex(9)->getY() - myGraph.getVertex(8)->getY()));
-	myGraph.addEdge(5, 9, calculateDist(myGraph.getVertex(9)->getX() - myGraph.getVertex(5)->getX(), myGraph.getVertex(9)->getY() - myGraph.getVertex(5)->getY()));
-	myGraph.addEdge(9, 10, calculateDist(myGraph.getVertex(9)->getX() - myGraph.getVertex(10)->getX(), myGraph.getVertex(9)->getY() - myGraph.getVertex(10)->getY()));
+	myGraph.addEdge(1, 2);
+	myGraph.addEdge(1, 3);
+	myGraph.addEdge(1, 7);
+	myGraph.addEdge(2, 4);
+	myGraph.addEdge(3, 8);
+	myGraph.addEdge(4, 6);
+	myGraph.addEdge(4, 5);
+	myGraph.addEdge(5, 10);
+	myGraph.addEdge(7, 6);
+	myGraph.addEdge(8, 9);
+	myGraph.addEdge(9, 5);
+	myGraph.addEdge(2, 1);
+	myGraph.addEdge(3, 1);
+	myGraph.addEdge(7, 1);
+	myGraph.addEdge(4, 2);
+	myGraph.addEdge(8, 3);
+	myGraph.addEdge(6, 4);
+	myGraph.addEdge(5, 4);
+	myGraph.addEdge(10, 5);
+	myGraph.addEdge(6, 7);
+	myGraph.addEdge(9, 8);
+	myGraph.addEdge(5, 9);
+	myGraph.addEdge(9, 10);
 
 
 	return myGraph;
@@ -66,7 +66,7 @@ int main() {
 	vector<Automovel> a;
 	vector<RefuelStation> r;
 	while(!quit) {
-		cout << "0 - quit | 1 - add Vehicle | 2 - Add Refuel Station | 3 - Add Point | 4 - Add Edge | 5 - Calculate Shortest Distance Between two points in vehicle A" << endl;
+		cout << "0 - quit | 1 - add Vehicle | 2 - Add Refuel Station | 3 - Add Point | 4 - Add Edge | 5 - Calculate Shortest Distance Between two points in vehicle A | 6 - List Vehicle | 7 - List Refuel Stations" << endl;
 		cin >> i;
 		if (i == 0) {
 			quit = true;
@@ -96,7 +96,7 @@ int main() {
 			int id,id2,dist;
 			cout << "Id P1 Id P2 and distance" << endl;
 			cin >> id >> id2 >> dist;
-			myGraph.addEdge(id,id2,dist);
+			myGraph.addEdge(id,id2);
 		}
 		else if (i ==5) {
 			if(a.size() == 0)
