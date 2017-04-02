@@ -648,12 +648,17 @@ void Graph<T>::getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r
 	}
 	int distMin = INT_INFINITY;
 	int b;
-
+	cout << distMin << endl;
 	for(unsigned int i = 0; i < r.size(); i++) {
-		if(calculateDist(r[i].getX()-point->getX(), r[i].getY()-point->getY()) < distMin && !r[i].getPassed() && a->checkDist(calculateDist(r[i].getX()- dest->getX(), r[i].getY()- dest->getY()))) {
-			distMin = calculateDist(r[i].getX()-point->getX(), r[i].getY()-point->getY());
+		if(calculateDist(r[i].getX()-point->getX(), r[i].getY()-point->getY()) < distMin && !r[i].getPassed() && (a->getConsume() * calculateDist(r[i].getX()- dest->getX(), r[i].getY()- dest->getY()) <= 100) && a->checkDist(calculateDist(r[i].getX()- point->getX(), r[i].getY()- point->getY()))) {
+			distMin = calculateDist(r[i].getX()-dest->getX(), r[i].getY()-dest->getY());
 			b = i;
+			cout << "Dest Info" << dest->getInfo() << endl;
+			cout << "CheckDist Station End: " << (a->getConsume() * calculateDist(r[i].getX()- dest->getX(), r[i].getY()- dest->getY())) << endl;
+			cout << "CheckDist Start Station: " << a->checkDist(calculateDist(r[i].getX()- point->getX(), r[i].getY()- point->getY())) << endl;
+			cout << "I: " << i << endl;
 		}
+		cout << "DIST MIN: " << distMin << endl;
 	}
 	if(distMin == INT_INFINITY) {
 		for(unsigned int i = 0; i < r.size(); i++) {
@@ -671,7 +676,8 @@ void Graph<T>::getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r
 		r[b].setPassed();
 		float perconsume = calculateConsume(point->info);
 		a->setConsume(a->getConsume()*perconsume);
-		a->setBattery(distMin);
+		a->setBattery(a->getBattery() -(a->getConsume() * dest->dist));
+		cout << distMin << "Refuel"<< endl;
 		cout << a->getBattery() << endl;
 		getNearbyStation(s,a,r);
 	}
@@ -679,8 +685,10 @@ void Graph<T>::getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r
 		cout << r[b].getId() << endl;
 		r[b].setPassed();
 		float perconsume = calculateConsume(point->info);
+		cout << "distMin: " << distMin << endl;
 		a->setConsume(a->getConsume()*perconsume);
-		a->setBattery(distMin);
+		a->setBattery(a->getBattery() -(a->getConsume() * dest->dist));
+		cout << distMin << "Refuel2"<< endl;
 		cout << a->getBattery() << endl;
 	}
 }
@@ -690,10 +698,10 @@ void Graph<T>::checkIsPointAndRefuelStation(vector<RefuelStation> r) {
 	vector<Vertex<int>*> vs = this->getVertexSet();
 	for(unsigned int i = 0;  i < vs.size(); i++) {
 		for(unsigned int j = 0; j < r.size(); j++) {
-			if(vs[i]->getX() == r[i].getX() && vs[i]->getY() == r[i].getY()) {
+			if(vs[i]->getX() == r[j].getX() && vs[i]->getY() == r[j].getY()) {
 				cout << "Point " << vs[i]->getInfo() << "is also a Refuel Station" << endl;
 				vs[i]->isRefuelStation = true;
-				vs[i]->stationVelocity = r[i].getVelocity();
+				vs[i]->stationVelocity = r[j].getVelocity();
 			}
 		}
 	}
