@@ -194,11 +194,12 @@ public:
 	bool isDAG();
 	void bellmanFordShortestPath(const T &s);
 	void dijkstraShortestPath(const T &s,Automovel* a);
-	void getInitialPath(vector<Vertex<int>* > vs, const T &s, Automovel* a, vector<RefuelStation> r);
-	void getNearbyStation(vector<Vertex<int>* > vs, const T &s,Automovel* a, vector<RefuelStation> r);
-	void getFullPath(vector<Vertex<int>* > vs, const T &s);
-	void checkIsPointAndRefuelStation(vector<Vertex<int>* > vs, vector<RefuelStation> r);
-	float calculateConsume(vector<Vertex<int>* > vs, const T &s);
+	void getInitialPath(const T &s, Automovel* a, vector<RefuelStation> r);
+	void getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r);
+	void getFullPath(const T &s);
+	void checkIsPointAndRefuelStation(vector<RefuelStation> r);
+	float calculateConsume(const T &s);
+	bool exists(const T &s);
 };
 
 
@@ -609,36 +610,37 @@ void Graph<T>::dijkstraShortestPath(const T &s, Automovel* a) {
 }
 
 template <class T>
-void Graph<T>::getInitialPath(vector<Vertex<int>* > vs, const T &s, Automovel* a, vector<RefuelStation> r) {
+void Graph<T>::getInitialPath(const T &s, Automovel* a, vector<RefuelStation> r) {
 	Vertex<T>* dest = getVertex(s);
 	if(dest->path != NULL && a->checkDist(dest->dist) ) {
-		getFullPath(vs,dest->info);
-		float perconsume = calculateConsume(vs,dest->info);
+		getFullPath(dest->info);
+		float perconsume = calculateConsume(dest->info);
 		cout << a->getConsume() << endl;
 		a->setConsume(a->getConsume()*perconsume);
 		a->setBattery(a->getBattery() -(a->getConsume() * dest->dist));
 	}
 	else if(dest->path != NULL && !a->checkDist(dest->dist)) {
 		cout << dest->info << " Refuel " << a->getBattery() <<endl;
-		this->getNearbyStation(vs,dest->info,a,r);
+		this->getNearbyStation(dest->info,a,r);
 	}
 }
 
 template<class T>
-void Graph<T>::getFullPath(vector<Vertex<int>* > vs, const T &s) {
+void Graph<T>::getFullPath(const T &s) {
+	vector<Vertex<int>*> vs = this->getVertexSet();
 	Vertex<T>* dest = getVertex(s);
 	for(unsigned int i = 0; i < vs.size(); i++) {
 		if(vs[i]->getInfo() == dest->getInfo()) {
 			if(vs[i]->path != NULL) {
 				cout << vs[i]->info << " pass" <<endl;
-				getFullPath(vs,vs[i]->path->info);
+				getFullPath(vs[i]->path->info);
 			}
 		}
 	}
 }
 
 template<class T>
-void Graph<T>::getNearbyStation(vector<Vertex<int>* > vs, const T &s,Automovel* a, vector<RefuelStation> r) {
+void Graph<T>::getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r) {
 	Vertex<T>* dest = getVertex(s);
 	Vertex<T>* point = getVertex(s);
 	while(point->path != NULL) {
@@ -667,16 +669,16 @@ void Graph<T>::getNearbyStation(vector<Vertex<int>* > vs, const T &s,Automovel* 
 		}
 		cout << r[b].getId() << endl;
 		r[b].setPassed();
-		float perconsume = calculateConsume(vs,point->info);
+		float perconsume = calculateConsume(point->info);
 		a->setConsume(a->getConsume()*perconsume);
 		a->setBattery(distMin);
 		cout << a->getBattery() << endl;
-		getNearbyStation(vs,s,a,r);
+		getNearbyStation(s,a,r);
 	}
 	else {
 		cout << r[b].getId() << endl;
 		r[b].setPassed();
-		float perconsume = calculateConsume(vs,point->info);
+		float perconsume = calculateConsume(point->info);
 		a->setConsume(a->getConsume()*perconsume);
 		a->setBattery(distMin);
 		cout << a->getBattery() << endl;
@@ -684,7 +686,8 @@ void Graph<T>::getNearbyStation(vector<Vertex<int>* > vs, const T &s,Automovel* 
 }
 
 template<class T>
-void Graph<T>::checkIsPointAndRefuelStation(vector<Vertex<int>* > vs, vector<RefuelStation> r) {
+void Graph<T>::checkIsPointAndRefuelStation(vector<RefuelStation> r) {
+	vector<Vertex<int>*> vs = this->getVertexSet();
 	for(unsigned int i = 0;  i < vs.size(); i++) {
 		for(unsigned int j = 0; j < r.size(); j++) {
 			if(vs[i]->getX() == r[i].getX() && vs[i]->getY() == r[i].getY()) {
@@ -697,7 +700,7 @@ void Graph<T>::checkIsPointAndRefuelStation(vector<Vertex<int>* > vs, vector<Ref
 }
 
 template<class T>
-float Graph<T>::calculateConsume(vector<Vertex<int>* > vs, const T &s) {
+float Graph<T>::calculateConsume(const T &s) {
 	Vertex<T>* dest = getVertex(s);
 	Vertex<T>* aux = getVertex(s);
 	while(aux->path != NULL) {
@@ -708,5 +711,15 @@ float Graph<T>::calculateConsume(vector<Vertex<int>* > vs, const T &s) {
 		return 1.5;
 	else
 		return 0.5;
+}
+
+template<class T>
+bool Graph<T>::exists(const T &s) {
+	vector<Vertex<int>*> vs = this->getVertexSet();
+	for(unsigned int i = 0; i < vs.size(); i++) {
+		if(s == vs[i]->getInfo())
+			return true;
+	}
+	return false;
 }
 #endif /* GRAPH_H_ */

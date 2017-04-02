@@ -72,19 +72,49 @@ int main() {
 			quit = true;
 		}
 		else if (i == 1) {
+			bool add = true;
 			int id;
 			float battery, consume;
 			cout << "Id of the Vehicle %of the battery and %/km";
 			cin >> id >> battery >> consume;
-			a.push_back(*new Automovel(id,battery,consume));
-			cout << a.back().getId() << " " << a.back().getConsume() << " " << a.back().getBattery() << endl;
+			for(unsigned int i = 0; i < r.size(); i++) {
+				if (a[i].getId() == id) {
+					cout << "Vehicle  already exists" << endl;
+					add = false;
+				}
+			}
+			if (battery > 100 || battery < 0) {
+				cout << "Battery must be a value between 100 and 0" << endl;
+				add =false;
+			}
+			if (consume < 0) {
+				cout << "The consume of a vehicle must be positive" << endl;
+				add = false;
+			}
+			if (add) {
+				a.push_back(*new Automovel(id,battery,consume));
+				cout << a.back().getId() << " " << a.back().getConsume() << " " << a.back().getBattery() << endl;
+			}
 		}
 		else if (i == 2) {
-			int id,velocidade,x,y,z;
-			cout << "Id of the Refuel Station x y z Recharge Velocity";
-			cin >> id >> x >> y >> z >> velocidade;
-			r.push_back(*new RefuelStation(id,velocidade,x,y,z));
-			cout << r.back().getId() << " " << r.back().getVelocity() << endl;
+			bool add = true;
+			int id,velocity,x,y,z;
+			cout << "Id of the Refuel Station x y z Rechargement Velocity";
+			cin >> id >> x >> y >> z >> velocity;
+			for(unsigned int i = 0; i < r.size(); i++) {
+				if (r[i].getX() == x && r[i].getY() == y) {
+					cout << "Refuel Station already exists" << endl;
+					add = false;
+				}
+			}
+			if (velocity != 1 && velocity != 2 && velocity != 3) {
+				cout << "Velocity must be 1 2 or 3" << endl;
+				add = false;
+			}
+			if (add) {
+				r.push_back(*new RefuelStation(id,velocity,x,y,z));
+				cout << r.back().getId() << " " << r.back().getVelocity() << endl;
+			}
 		}
 		else if (i == 3) {
 			int id,x,y,z;
@@ -94,8 +124,8 @@ int main() {
 		}
 		else if (i == 4) {
 			int id,id2,dist;
-			cout << "Id P1 Id P2 and distance" << endl;
-			cin >> id >> id2 >> dist;
+			cout << "Id P1 Id P2" << endl;
+			cin >> id >> id2;
 			myGraph.addEdge(id,id2);
 		}
 		else if (i ==5) {
@@ -112,26 +142,33 @@ int main() {
 					if (a[j].getId() == vehicleid)
 						break;
 				}
+				if (!myGraph.exists(start))
+					cout << "Doens't exists the point " << start << endl;
+				if (!myGraph.exists(end))
+					cout << "Doens't exists the point " << end << endl;
 				if (a[j].getId() != vehicleid) {
 					cout << "There is no vehicle with id = " << vehicleid
 							<< endl;
-				} else {
-					vector<Vertex<int>*> vs = myGraph.getVertexSet();
-					myGraph.checkIsPointAndRefuelStation(vs, r);
+				} else if (myGraph.exists(start) && myGraph.exists(end)){
+					myGraph.checkIsPointAndRefuelStation(r);
 					myGraph.dijkstraShortestPath(start, &a[j]);
-					vs = myGraph.getVertexSet();
 					cout << a[j].getBattery() << endl;
 					cout << myGraph.getVertex(end)->getDist() << endl;
-					myGraph.getInitialPath(vs, end, &a[j],r);
-					cout << a[j].getBattery() << endl;
+					myGraph.getInitialPath(end, &a[j],r);
 				}
 			}
 		}
 		else if(i == 6) {
-			cout << "Print Vehicles" << endl;
+			cout << "Vehicle ID              BATTERY           CONSUME" << endl;
+			for(unsigned int i = 0; i < a.size(); i++) {
+				cout << a[i].getId() << "              " << a[i].getBattery() << "              " << a[i].getConsume() << endl;
+			}
 		}
 		else if(i == 7) {
-			cout << "Print Refuel Stations" << endl;
+			cout << "Vehicle ID                X               Y             Z              Velocity" << endl;
+			for(unsigned int i = 0; i < r.size(); i++) {
+				cout << r[i].getId() << "              " << r[i].getX() << "              " << r[i].getY() << "              " << r[i].getZ() << "              " << r[i].getVelocity() << endl;
+			}
 		}
 	}
 }

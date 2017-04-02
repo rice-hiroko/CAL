@@ -30,6 +30,7 @@ public:
 	void setVelocity(int v);
 	float getX();
 	float getY();
+	float getZ();
 	void setPassed();
 	bool getPassed();
 };

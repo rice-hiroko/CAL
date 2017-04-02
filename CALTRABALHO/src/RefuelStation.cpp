@@ -28,6 +28,10 @@ float RefuelStation::getY() {
 	return y;
 }
 
+float RefuelStation::getZ() {
+	return z;
+}
+
 void RefuelStation::setPassed() {
 	passed = true;
 }
