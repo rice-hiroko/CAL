@@ -23,6 +23,8 @@ float Automovel::getConsume(){
 void Automovel::setBattery(float b) {
 	if(b >= 100)
 		battery = 100;
+	else if (b <= 0)
+		battery = 0;
 	else
 		battery = b;
 }

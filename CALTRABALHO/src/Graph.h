@@ -193,13 +193,15 @@ public:
 	void unweightedShortestPath(const T &v);
 	bool isDAG();
 	void bellmanFordShortestPath(const T &s);
-	void dijkstraShortestPath(const T &s,Automovel* a);
+	void dijkstraShortestPath(const T &s, Automovel* a);
 	void getInitialPath(const T &s, Automovel* a, vector<RefuelStation> r);
-	void getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r);
-	void getFullPath(const T &s);
+	void getNearbyStation(const T &s, Automovel* a, vector<RefuelStation> r, int x);
+	void getFullPath(const T &s, Automovel* a);
 	void checkIsPointAndRefuelStation(vector<RefuelStation> r);
 	float calculateConsume(const T &s);
-	bool exists(const T &s);
+	bool existsPoint(const T &s);
+	bool existsEdge(const T &s, const T &x);
+
 };
 
 
@@ -612,84 +614,85 @@ void Graph<T>::dijkstraShortestPath(const T &s, Automovel* a) {
 template <class T>
 void Graph<T>::getInitialPath(const T &s, Automovel* a, vector<RefuelStation> r) {
 	Vertex<T>* dest = getVertex(s);
+	float consume = a->getConsume();
+	float consumePerc = calculateConsume(dest->info);
+	a->setConsume(consume*consumePerc);
 	if(dest->path != NULL && a->checkDist(dest->dist) ) {
-		getFullPath(dest->info);
-		float perconsume = calculateConsume(dest->info);
-		cout << a->getConsume() << endl;
-		a->setConsume(a->getConsume()*perconsume);
-		a->setBattery(a->getBattery() -(a->getConsume() * dest->dist));
+		getFullPath(dest->info,a);
 	}
 	else if(dest->path != NULL && !a->checkDist(dest->dist)) {
-		cout << dest->info << " Refuel " << a->getBattery() <<endl;
-		this->getNearbyStation(dest->info,a,r);
+		cout << "To arrive to: "<< dest->info << " you need to refuel" <<endl;
+		this->getNearbyStation(dest->info,a,r,NULL);
 	}
+	a->setConsume(consume);
 }
 
 template<class T>
-void Graph<T>::getFullPath(const T &s) {
-	vector<Vertex<int>*> vs = this->getVertexSet();
+void Graph<T>::getFullPath(const T &s, Automovel* a) {
 	Vertex<T>* dest = getVertex(s);
-	for(unsigned int i = 0; i < vs.size(); i++) {
-		if(vs[i]->getInfo() == dest->getInfo()) {
-			if(vs[i]->path != NULL) {
-				cout << vs[i]->info << " pass" <<endl;
-				getFullPath(vs[i]->path->info);
-			}
-		}
+	vector<Vertex<T>*> path;
+	while(dest->path != NULL) {
+		path.push_back(dest);
+		dest = dest->path;
+	}
+	for(int i = path.size() - 1; i > -1; i--) {
+		a->setBattery(a->getBattery() - (a->getConsume() * (path[i]->dist - path[i]->path->dist)));
+		cout << "Go to: " << path[i]->info << " You arrive with the battery at: "<< a->getBattery() << endl;
 	}
 }
 
 template<class T>
-void Graph<T>::getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r) {
+void Graph<T>::getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r, int x) {
 	Vertex<T>* dest = getVertex(s);
 	Vertex<T>* point = getVertex(s);
 	while(point->path != NULL) {
 		point = point->path;
 	}
-	int distMin = INT_INFINITY;
+	int distTotal = INT_INFINITY;
 	int b;
-	cout << distMin << endl;
+
+
 	for(unsigned int i = 0; i < r.size(); i++) {
-		if(calculateDist(r[i].getX()-point->getX(), r[i].getY()-point->getY()) < distMin && !r[i].getPassed() && (a->getConsume() * calculateDist(r[i].getX()- dest->getX(), r[i].getY()- dest->getY()) <= 100) && a->checkDist(calculateDist(r[i].getX()- point->getX(), r[i].getY()- point->getY()))) {
-			distMin = calculateDist(r[i].getX()-dest->getX(), r[i].getY()-dest->getY());
-			b = i;
-			cout << "Dest Info" << dest->getInfo() << endl;
-			cout << "CheckDist Station End: " << (a->getConsume() * calculateDist(r[i].getX()- dest->getX(), r[i].getY()- dest->getY())) << endl;
-			cout << "CheckDist Start Station: " << a->checkDist(calculateDist(r[i].getX()- point->getX(), r[i].getY()- point->getY())) << endl;
-			cout << "I: " << i << endl;
+		if(calculateDist(r[i].getX()- point->getX(), r[i].getY()- point->getY()) + calculateDist(r[i].getX()- dest->getX(), r[i].getY()- dest->getY()) < distTotal && !r[i].getPassed() && (a->checkDist(calculateDist(r[i].getX()- dest->getX(), r[i].getY()- dest->getY()))) && a->checkDist(calculateDist(r[i].getX()- point->getX(), r[i].getY()- point->getY()))) {
+				distTotal = calculateDist(r[i].getX()- dest->getX(), r[i].getY()- dest->getY() + calculateDist(r[i].getX()- point->getX(), r[i].getY()- point->getY()));
+				b = i;
 		}
-		cout << "DIST MIN: " << distMin << endl;
 	}
-	if(distMin == INT_INFINITY) {
+	if(distTotal == INT_INFINITY) {
 		for(unsigned int i = 0; i < r.size(); i++) {
-			if(calculateDist(r[i].getX()-point->getX(), r[i].getY()-point->getY()) < distMin && !r[i].getPassed()) {
-				distMin = calculateDist(r[i].getX()-point->getX(), r[i].getY()-point->getY());
+
+			if(calculateDist(r[i].getX()- point->getX(), r[i].getY()- point->getY() + calculateDist(r[i].getX()- dest->getX(), r[i].getY()- dest->getY())) < distTotal && !r[i].getPassed()) {
+				distTotal = calculateDist(r[i].getX()- point->getX(), r[i].getY()- point->getY());
 				b = i;
 			}
 		}
-		if(distMin == INT_INFINITY) {
-			cout << "You can´t reach the end" << endl;
+		if(distTotal == INT_INFINITY) {
+			if(x !=NULL) {
+			cout << "You can´t reach the end at: " << calculateDist(r[x].getX()- dest->getX(), r[x].getY()- dest->getY()) << endl;
 			a->setBattery(0);
 			return;
+			}
+			else {
+				cout << "You can´t reach the end at: " << calculateDist(point->getX()- dest->getX(), point->getY()- dest->getY()) << endl;
+				a->setBattery(0);
+				return;
+			}
 		}
-		cout << r[b].getId() << endl;
-		r[b].setPassed();
-		float perconsume = calculateConsume(point->info);
-		a->setConsume(a->getConsume()*perconsume);
-		a->setBattery(a->getBattery() -(a->getConsume() * dest->dist));
-		cout << distMin << "Refuel"<< endl;
-		cout << a->getBattery() << endl;
-		getNearbyStation(s,a,r);
+		cout << "Pass by Refuel Station: "<< r[b].getId() << " You need to travel: " << distTotal << endl;
+		r[b].setPassed(true);
+		a->setBattery(a->getBattery() -(a->getConsume() * calculateDist(r[b].getX()- point->getX(), r[b].getY()- point->getY())));
+		cout << "You arrive at the station with the battery at: " << a->getBattery() << endl;
+		a->setBattery(100);
+		getNearbyStation(s,a,r,b);
 	}
 	else {
-		cout << r[b].getId() << endl;
-		r[b].setPassed();
-		float perconsume = calculateConsume(point->info);
-		cout << "distMin: " << distMin << endl;
-		a->setConsume(a->getConsume()*perconsume);
-		a->setBattery(a->getBattery() -(a->getConsume() * dest->dist));
-		cout << distMin << "Refuel2"<< endl;
-		cout << a->getBattery() << endl;
+		cout << "Pass by Refuel Station: "<< r[b].getId() << " You need to travel: " << calculateDist(r[b].getX()- point->getX(), r[b].getY()- point->getY()) << endl;
+		r[b].setPassed(true);
+		a->setBattery(a->getBattery() -(a->getConsume() * calculateDist(r[b].getX()- point->getX(), r[b].getY()- point->getY())));
+		cout << "You arrive at the station with the battery at: " << a->getBattery() << endl;
+		cout << "After Refueling you can go to: " << dest->getInfo() << " You need to travel: " << calculateDist(r[b].getX()- dest->getX(), r[b].getY()- dest->getY()) << endl;
+		a->setBattery(100 -(a->getConsume() * calculateDist(r[b].getX()- dest->getX(), r[b].getY()- dest->getY())));
+		cout << "You arrive with the battery at: " << a->getBattery() << endl;
 	}
 }
 
@@ -699,7 +702,7 @@ void Graph<T>::checkIsPointAndRefuelStation(vector<RefuelStation> r) {
 	for(unsigned int i = 0;  i < vs.size(); i++) {
 		for(unsigned int j = 0; j < r.size(); j++) {
 			if(vs[i]->getX() == r[j].getX() && vs[i]->getY() == r[j].getY()) {
-				cout << "Point " << vs[i]->getInfo() << "is also a Refuel Station" << endl;
+				cout << "Point " << vs[i]->getInfo() << " is also a Refuel Station" << endl;
 				vs[i]->isRefuelStation = true;
 				vs[i]->stationVelocity = r[j].getVelocity();
 			}
@@ -714,18 +717,28 @@ float Graph<T>::calculateConsume(const T &s) {
 	while(aux->path != NULL) {
 		aux = aux->path;
 	}
-	int diff = calculateDif(aux->getZ(),dest->getZ());
-	if(diff < 0)
+	int diff = calculateDif(dest->getZ(),aux->getZ());
+	if(diff > 0)
 		return 1.5;
 	else
-		return 0.5;
+		return -1.5;
 }
 
 template<class T>
-bool Graph<T>::exists(const T &s) {
+bool Graph<T>::existsPoint(const T &s) {
 	vector<Vertex<int>*> vs = this->getVertexSet();
 	for(unsigned int i = 0; i < vs.size(); i++) {
 		if(s == vs[i]->getInfo())
+			return true;
+	}
+	return false;
+}
+
+template<class T>
+bool Graph<T>::existsEdge(const T &s, const T &x) {
+	Vertex<T>* aux = getVertex(s);
+	for(unsigned int i = 0; i < aux->adj.size(); i++) {
+		if(x == aux->adj[i].dest->getInfo())
 			return true;
 	}
 	return false;

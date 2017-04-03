@@ -32,8 +32,8 @@ float RefuelStation::getZ() {
 	return z;
 }
 
-void RefuelStation::setPassed() {
-	passed = true;
+void RefuelStation::setPassed(bool b) {
+	passed = b;
 }
 
 bool RefuelStation::getPassed() {

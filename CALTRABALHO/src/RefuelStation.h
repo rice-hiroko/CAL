@@ -31,7 +31,7 @@ public:
 	float getX();
 	float getY();
 	float getZ();
-	void setPassed();
+	void setPassed(bool b);
 	bool getPassed();
 };
 
