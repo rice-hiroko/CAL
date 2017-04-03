@@ -15,22 +15,17 @@
 
 using namespace std;
 
+//alterei
 class RefuelStation {
 	int id;
-	float x;
-	float y;
-	float z;
 	int velocity;
 	bool passed;
 
 public:
-	RefuelStation(int i, int v, float a, float b, float c);
+	RefuelStation(int i, int v);
 	int getId();
 	int getVelocity();
 	void setVelocity(int v);
-	float getX();
-	float getY();
-	float getZ();
 	void setPassed(bool b);
 	bool getPassed();
 };

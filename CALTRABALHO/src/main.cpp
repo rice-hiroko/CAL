@@ -10,6 +10,9 @@
 #include <sstream>
 #include <iostream>
 #include "Vehicle.h"
+#include <cstdio>
+#include "graphviewer.h"
+#include <fstream>
 
 using namespace std;
 
@@ -18,16 +21,16 @@ Graph<int> CreateTestGraph()
 {
 	Graph<int> myGraph;
 
-	myGraph.addVertex(1,1,1,1);
-	myGraph.addVertex(2,1000,2453,1231);
-	myGraph.addVertex(3,12038,231,353);
-	myGraph.addVertex(4,1232,3243,876);
-	myGraph.addVertex(5,3421,2356,012);
-	myGraph.addVertex(6,132,1324,985);
-	myGraph.addVertex(7,292,1324,812);
-	myGraph.addVertex(8,6598,3716,921);
-	myGraph.addVertex(9,143,987,687);
-	myGraph.addVertex(10,8652,2343,543);
+	myGraph.addVertex(1,1,1,0);
+	myGraph.addVertex(2,1000,2453,0);
+	myGraph.addVertex(3,12038,231,0);
+	myGraph.addVertex(4,1232,3243,0);
+	myGraph.addVertex(5,3421,2356,0);
+	myGraph.addVertex(6,132,1324,0);
+	myGraph.addVertex(7,292,1324,0);
+	myGraph.addVertex(8,6598,3716,0);
+	myGraph.addVertex(9,143,987,0);
+	myGraph.addVertex(10,8652,2343,0);
 
 
 	// distancias em kms
@@ -59,6 +62,7 @@ Graph<int> CreateTestGraph()
 	return myGraph;
 }
 
+//alterei
 int main() {
 	Graph<int> myGraph = CreateTestGraph();
 	bool quit = false;
@@ -66,7 +70,7 @@ int main() {
 	vector<Automovel> a;
 	vector<RefuelStation> r;
 	while(!quit) {
-		cout << "0 - quit | 1 - add Vehicle | 2 - Add Refuel Station | 3 - Add Point | 4 - Add Edge | 5 - Calculate Shortest Distance Between two points in vehicle A | 6 - List Vehicle | 7 - List Refuel Stations" << endl;
+		cout << "0 - quit | 1 - add Vehicle | 2 - Add Refuel Station | 3 - Add Point | 4 - Add Edge " << endl << " 5 - Calculate Shortest Distance Between two points in vehicle A | 6 - List Vehicle | 7 - List Refuel Stations | 8 - GraphViewer" << endl;
 		cin >> i;
 		if (i == 0) {
 			quit = true;
@@ -77,8 +81,8 @@ int main() {
 			float battery, consume;
 			cout << "Id of the Vehicle %of the battery and %/km";
 			cin >> id >> battery >> consume;
-			for(unsigned int i = 0; i < a.size(); i++) {
-				if (a[i].getId() == id) {
+			for(unsigned int j = 0; j < a.size(); j++) {
+				if (a[j].getId() == id) {
 					cout << "Vehicle  already exists" << endl;
 					add = false;
 				}
@@ -98,11 +102,11 @@ int main() {
 		}
 		else if (i == 2) {
 			bool add = true;
-			int id,velocity,x,y,z;
-			cout << "Id of the Refuel Station x y z Rechargement Velocity";
-			cin >> id >> x >> y >> z >> velocity;
-			for(unsigned int i = 0; i < r.size(); i++) {
-				if (r[i].getX() == x && r[i].getY() == y) {
+			int id,velocity,z;
+			cout << "Id of the Refuel Station Rechargement Velocity and Altitude";
+			cin >> id >> velocity >> z;
+			for(unsigned int j = 0; j < r.size(); j++) {
+				if (r[j].getId() == id) {
 					cout << "Refuel Station already exists" << endl;
 					add = false;
 				}
@@ -112,7 +116,9 @@ int main() {
 				add = false;
 			}
 			if (add) {
-				r.push_back(*new RefuelStation(id,velocity,x,y,z));
+				r.push_back(*new RefuelStation(id,velocity));
+				myGraph.getVertex(id)->setIsRefuelStation(true);
+				myGraph.getVertex(id)->setZ(z);
 				cout << r.back().getId() << " " << r.back().getVelocity() << endl;
 			}
 		}
@@ -141,7 +147,6 @@ int main() {
 				add = false;
 			}
 			if (add) {
-				cout << "1" << endl;
 				myGraph.addEdge(id,id2);
 			}
 		}
@@ -168,9 +173,14 @@ int main() {
 							<< endl;
 				} else if (myGraph.existsPoint(start) && myGraph.existsPoint(end)){
 					myGraph.checkIsPointAndRefuelStation(r);
+
+
 					myGraph.dijkstraShortestPath(start, &a[j]);
-					cout << "Shortest Distance to arrive: " << myGraph.getVertex(end)->getDist() << endl;
+					cout << "Shortest Distance to arrive without Refueling: " << myGraph.getVertex(end)->getDist() << endl;
 					myGraph.getInitialPath(end, &a[j],r);
+					for(unsigned int k = 0; k < r.size(); k++) {
+						r[k].setPassed(false);
+					}
 				}
 			}
 		}
@@ -179,8 +189,8 @@ int main() {
 				cout << "No Vehicles available" << endl;
 			else {
 				cout << "Vehicle ID              BATTERY           CONSUME" << endl;
-				for(unsigned int i = 0; i < a.size(); i++) {
-					cout << a[i].getId() << "                       " << a[i].getBattery() << "               " << a[i].getConsume() << endl;
+				for(unsigned int j = 0; j < a.size(); j++) {
+					cout << a[j].getId() << "                       " << a[j].getBattery() << "               " << a[j].getConsume() << endl;
 				}
 			}
 		}
@@ -189,10 +199,25 @@ int main() {
 				cout << "No Refuel Stations available" << endl;
 			else {
 				cout << "Refuel Station ID         X               Y             Z              Velocity" << endl;
-				for(unsigned int i = 0; i < r.size(); i++) {
-					cout << r[i].getId() << "                         " << r[i].getX() << "               " << r[i].getY() << "             " << r[i].getZ() << "              " << r[i].getVelocity() << endl;
+				for(unsigned int j = 0; j < r.size(); j++) {
+					cout << r[j].getId() << "                         " << myGraph.getVertex(r[j].getId())->getX() << "               " << myGraph.getVertex(r[j].getId())->getY() << "             " << myGraph.getVertex(r[j].getId())->getZ() << "              " << r[j].getVelocity() << endl;
 				}
 			}
+		}
+		else if (i == 8) {
+//			vector<Vertex<int>*> vs = myGraph.getVertexSet();
+//			GraphViewer *gv = new GraphViewer(600, 600, false);
+//			gv->createWindow(600, 600);
+//			gv->defineVertexColor("blue");
+//			gv->defineEdgeColor("black");
+//			for(unsigned int j = 0; j < vs.size(); j++) {
+//				gv->addNode(vs[j]->getInfo(),vs[j]->getX(),vs[j]->getY());
+//			}
+//			for(unsigned int j = 0; j < vs.size(); j++) {
+//				for(unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
+//					gv->addEdge(vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getAdj()[k].getDest()->getDist(),EdgeType::UNDIRECTED);
+//				}
+//			}
 		}
 	}
 }
