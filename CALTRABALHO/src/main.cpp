@@ -7,12 +7,9 @@
 
 #include "utils.h"
 #include "Graph.h"
-#include <sstream>
-#include <iostream>
 #include "Vehicle.h"
 #include <cstdio>
 #include "graphviewer.h"
-#include <fstream>
 
 using namespace std;
 
@@ -64,7 +61,13 @@ Graph<int> CreateTestGraph()
 
 //alterei
 int main() {
-	Graph<int> myGraph = CreateTestGraph();
+	Graph<int> myGraph;
+
+	if(myGraph.readPontos("Pontos.txt") == -1) {
+		cout << "Error Reading Pontos.txt" << endl;
+	}
+
+
 	bool quit = false;
 	int i = 0;
 	vector<Automovel> a;

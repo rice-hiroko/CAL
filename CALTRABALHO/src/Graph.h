@@ -12,8 +12,12 @@
 #include <climits>
 #include <cmath>
 #include <algorithm>    // std::make_heap, std::pop_heap, std::push_heap, std::sort_heap
-
+#include <fstream>
+#include <iostream>
+#include <string>
 #include "Vehicle.h"
+#include <sstream>
+
 using namespace std;
 
 template <class T> class Edge;
@@ -224,7 +228,7 @@ public:
 	float calculateConsume(const T &s, const T &x);
 	bool existsPoint(const T &s);
 	bool existsEdge(const T &s, const T &x);
-
+	int readPontos(string name);
 };
 
 
@@ -762,4 +766,70 @@ bool Graph<T>::existsEdge(const T &s, const T &x) {
 	}
 	return false;
 }
+
+template<class T>
+int Graph<T>::readPontos(string name) {
+	ifstream fpoints;
+	fpoints.open(name.c_str(), ifstream::in);
+
+	if (fpoints.is_open()) {
+		while (fpoints.good()) {
+			int id;
+			double latitude, longitude;
+			string id_s, lat_s, lon_s;
+
+			getline(fpoints, id_s, ';');
+			getline(fpoints, lat_s, ';');
+			getline(fpoints, lon_s, ';');
+			fpoints.ignore(1000, '\n');
+
+			//converts from string to int/double
+			id = atoi(id_s.c_str());
+			latitude = atof(lat_s.c_str());
+			longitude = atof(lon_s.c_str());
+
+			if (id == 0)
+				break;
+			double x = calculateX(longitude,600);
+			double y = calculateY(latitude,600,600);
+			this->addVertex(id, x, y, 0);
+		}
+	} else
+		return -1;
+
+	fpoints.close();
+	return 0;
+
+}
+
+int readEdgesLimits(string name, Graph<int> *g) {
+	ifstream fedgesLimits;
+	fedgesLimits.open(name.c_str(), ifstream::in);
+	vector<int> idRoads;
+
+	if (fedgesLimits.is_open()) {
+		while (fedgesLimits.good()) {
+			int sourc_id, dest_id;
+			string r_s, s_s, d_s; //road_string, sourc_string, dest_string
+
+			getline(fedgesLimits, r_s, ';');
+			getline(fedgesLimits, s_s, ';');
+			getline(fedgesLimits, d_s, ';');
+			fedgesLimits.ignore(10, '\n');
+
+			//converts from string to double
+			sourc_id = atoi(s_s.c_str());
+			dest_id = atof(d_s.c_str());
+
+			if (sourc_id == 0)
+				break;
+			g->addEdge(sourc_id, dest_id);
+		}
+	} else
+		return -1;
+
+	fedgesLimits.close();
+	return 0;
+}
+
 #endif /* GRAPH_H_ */
