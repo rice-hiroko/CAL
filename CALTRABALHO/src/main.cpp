@@ -14,23 +14,111 @@
 using namespace std;
 
 
-Graph<int> CreateTestGraph()
+Graph<int> CreateShortestGraph()
 {
 	Graph<int> myGraph;
 
 	myGraph.addVertex(1,1,1,0);
-	myGraph.addVertex(2,1000,2453,0);
-	myGraph.addVertex(3,12038,231,0);
-	myGraph.addVertex(4,1232,3243,0);
-	myGraph.addVertex(5,3421,2356,0);
-	myGraph.addVertex(6,132,1324,0);
-	myGraph.addVertex(7,292,1324,0);
-	myGraph.addVertex(8,6598,3716,0);
+	myGraph.addVertex(2,658,453,0);
+	myGraph.addVertex(3,128,231,0);
+	myGraph.addVertex(4,232,323,0);
+	myGraph.addVertex(5,342,256,0);
+	myGraph.addVertex(6,132,124,0);
+	myGraph.addVertex(7,292,131,0);
+	myGraph.addVertex(8,659,116,0);
 	myGraph.addVertex(9,143,987,0);
-	myGraph.addVertex(10,8652,2343,0);
+	myGraph.addVertex(10,862,243,0);
 
 
-	// distancias em kms
+	myGraph.addEdge(1, 2);
+	myGraph.addEdge(1, 3);
+	myGraph.addEdge(1, 7);
+	myGraph.addEdge(2, 4);
+	myGraph.addEdge(3, 8);
+	myGraph.addEdge(4, 6);
+	myGraph.addEdge(4, 5);
+	myGraph.addEdge(5, 10);
+	myGraph.addEdge(7, 6);
+	myGraph.addEdge(8, 9);
+	myGraph.addEdge(9, 5);
+	myGraph.addEdge(2, 1);
+	myGraph.addEdge(3, 1);
+	myGraph.addEdge(7, 1);
+	myGraph.addEdge(4, 2);
+	myGraph.addEdge(8, 3);
+	myGraph.addEdge(6, 4);
+	myGraph.addEdge(5, 4);
+	myGraph.addEdge(10, 5);
+	myGraph.addEdge(6, 7);
+	myGraph.addEdge(9, 8);
+	myGraph.addEdge(5, 9);
+	myGraph.addEdge(9, 10);
+
+
+	return myGraph;
+}
+
+
+Graph<int> CreateMediumGraph()
+{
+	Graph<int> myGraph;
+
+	myGraph.addVertex(1,1,1,0);
+	myGraph.addVertex(2,658,453,0);
+	myGraph.addVertex(3,128,231,0);
+	myGraph.addVertex(4,232,323,0);
+	myGraph.addVertex(5,342,256,0);
+	myGraph.addVertex(6,132,124,0);
+	myGraph.addVertex(7,292,131,0);
+	myGraph.addVertex(8,659,116,0);
+	myGraph.addVertex(9,143,987,0);
+	myGraph.addVertex(10,862,243,0);
+
+
+	myGraph.addEdge(1, 2);
+	myGraph.addEdge(1, 3);
+	myGraph.addEdge(1, 7);
+	myGraph.addEdge(2, 4);
+	myGraph.addEdge(3, 8);
+	myGraph.addEdge(4, 6);
+	myGraph.addEdge(4, 5);
+	myGraph.addEdge(5, 10);
+	myGraph.addEdge(7, 6);
+	myGraph.addEdge(8, 9);
+	myGraph.addEdge(9, 5);
+	myGraph.addEdge(2, 1);
+	myGraph.addEdge(3, 1);
+	myGraph.addEdge(7, 1);
+	myGraph.addEdge(4, 2);
+	myGraph.addEdge(8, 3);
+	myGraph.addEdge(6, 4);
+	myGraph.addEdge(5, 4);
+	myGraph.addEdge(10, 5);
+	myGraph.addEdge(6, 7);
+	myGraph.addEdge(9, 8);
+	myGraph.addEdge(5, 9);
+	myGraph.addEdge(9, 10);
+
+
+	return myGraph;
+}
+
+Graph<int> CreateLargeGraph()
+{
+	Graph<int> myGraph;
+
+	myGraph.addVertex(1,1,1,0);
+	myGraph.addVertex(2,658,453,0);
+	myGraph.addVertex(3,128,231,0);
+	myGraph.addVertex(4,232,323,0);
+	myGraph.addVertex(5,342,256,0);
+	myGraph.addVertex(6,132,124,0);
+	myGraph.addVertex(7,292,131,0);
+	myGraph.addVertex(8,659,116,0);
+	myGraph.addVertex(9,143,987,0);
+	myGraph.addVertex(10,862,243,0);
+
+
 	myGraph.addEdge(1, 2);
 	myGraph.addEdge(1, 3);
 	myGraph.addEdge(1, 7);
@@ -62,14 +150,20 @@ Graph<int> CreateTestGraph()
 //alterei
 int main() {
 	Graph<int> myGraph;
-
-	if(myGraph.readPontos("Pontos.txt") == -1) {
-		cout << "Error Reading Pontos.txt" << endl;
+	int i = 0;
+	while(i != 1 && i != 2 && i != 3) {
+		cout << "Shortest Graph - 1 | Medium Graph - 2 | Large Graph - 3" << endl;
+		cin >> i;
 	}
-
+	if(i == 1)
+		myGraph = CreateShortestGraph();
+	if(i == 2)
+		myGraph = CreateMediumGraph();
+	if(i == 3)
+		myGraph = CreateLargeGraph();
 
 	bool quit = false;
-	int i = 0;
+	i = 0;
 	vector<Automovel> a;
 	vector<RefuelStation> r;
 	while(!quit) {
@@ -218,7 +312,11 @@ int main() {
 //			}
 //			for(unsigned int j = 0; j < vs.size(); j++) {
 //				for(unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
-//					gv->addEdge(vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getAdj()[k].getDest()->getDist(),EdgeType::UNDIRECTED);
+//					if(myGraph.existsEdge(vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getInfo()))
+//						gv->addEdge(vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getAdj()[k].getDest()->getDist(),EdgeType::UNDIRECTED);
+//					else
+//						gv->addEdge(vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getAdj()[k].getDest()->getDist(),EdgeType::DIRECTED);
+//
 //				}
 //			}
 		}
