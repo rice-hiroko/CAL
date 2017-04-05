@@ -16,7 +16,6 @@
 #include <iostream>
 #include <string>
 #include "Vehicle.h"
-#include <sstream>
 
 using namespace std;
 
@@ -66,6 +65,8 @@ public:
 	vector<Edge<T>  > getAdj();
 	void setIsRefuelStation(bool b);
 	void setZ(int i);
+	void setVisited(bool b);
+	bool getVisited();
 	Vertex* path;
 };
 
@@ -95,7 +96,7 @@ bool Vertex<T>::removeEdgeTo(Vertex<T> *d) {
 
 //atualizado pelo exercício 5
 template <class T>
-Vertex<T>::Vertex(T in, int i, int j, int k): info(in), x(i), y(j), z(k), isRefuelStation(false), visited(false), processing(false), indegree(0), dist(0) {
+Vertex<T>::Vertex(T in, int i, int j, int k): info(in), x(i), y(j), z(k), isRefuelStation(false), visited(false), stationVelocity(0), processing(false), indegree(0), dist(0) {
 	path = NULL;
 }
 
@@ -156,6 +157,15 @@ vector<Edge<T>  > Vertex<T>::getAdj() {
 template <class T>
 void Vertex<T>::setIsRefuelStation(bool b) {
 	isRefuelStation = b;
+}
+template <class T>
+void Vertex<T>::setVisited(bool b) {
+	visited = b;
+}
+
+template <class T>
+bool Vertex<T>::getVisited() {
+	return visited;
 }
 
 /* ================================================================================================

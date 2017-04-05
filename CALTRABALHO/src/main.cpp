@@ -10,11 +10,13 @@
 #include "Vehicle.h"
 #include <cstdio>
 #include "graphviewer.h"
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
 
-Graph<int> CreateShortestGraph()
+Graph<int> CreateShortGraph()
 {
 	Graph<int> myGraph;
 
@@ -26,34 +28,56 @@ Graph<int> CreateShortestGraph()
 	myGraph.addVertex(6,132,124,0);
 	myGraph.addVertex(7,292,131,0);
 	myGraph.addVertex(8,659,116,0);
-	myGraph.addVertex(9,143,987,0);
+	myGraph.addVertex(9,143,387,0);
 	myGraph.addVertex(10,862,243,0);
 
 
-	myGraph.addEdge(1, 2);
 	myGraph.addEdge(1, 3);
+	myGraph.addEdge(1, 6);
 	myGraph.addEdge(1, 7);
-	myGraph.addEdge(2, 4);
-	myGraph.addEdge(3, 8);
-	myGraph.addEdge(4, 6);
-	myGraph.addEdge(4, 5);
-	myGraph.addEdge(5, 10);
-	myGraph.addEdge(7, 6);
-	myGraph.addEdge(8, 9);
-	myGraph.addEdge(9, 5);
-	myGraph.addEdge(2, 1);
-	myGraph.addEdge(3, 1);
-	myGraph.addEdge(7, 1);
-	myGraph.addEdge(4, 2);
-	myGraph.addEdge(8, 3);
-	myGraph.addEdge(6, 4);
-	myGraph.addEdge(5, 4);
-	myGraph.addEdge(10, 5);
+	myGraph.addEdge(1, 8);
+	myGraph.addEdge(6, 3);
 	myGraph.addEdge(6, 7);
-	myGraph.addEdge(9, 8);
-	myGraph.addEdge(5, 9);
-	myGraph.addEdge(9, 10);
-
+	myGraph.addEdge(6, 4);
+	myGraph.addEdge(6, 5);
+	myGraph.addEdge(3, 1);
+	myGraph.addEdge(3, 6);
+	myGraph.addEdge(6, 1);
+	myGraph.addEdge(3, 4);
+	myGraph.addEdge(3, 5);
+	myGraph.addEdge(3, 9);
+	myGraph.addEdge(7, 1);
+	myGraph.addEdge(7, 6);
+	myGraph.addEdge(7, 5);
+	myGraph.addEdge(7, 8);
+	myGraph.addEdge(7, 4);
+	myGraph.addEdge(9, 3);
+	myGraph.addEdge(9, 4);
+	myGraph.addEdge(4, 9);
+	myGraph.addEdge(4, 6);
+	myGraph.addEdge(4, 3);
+	myGraph.addEdge(4, 7);
+	myGraph.addEdge(4, 5);
+	myGraph.addEdge(5, 4);
+	myGraph.addEdge(5, 3);
+	myGraph.addEdge(5, 6);
+	myGraph.addEdge(5, 8);
+	myGraph.addEdge(5, 7);
+	myGraph.addEdge(5, 10);
+	myGraph.addEdge(8, 7);
+	myGraph.addEdge(8, 10);
+	myGraph.addEdge(8, 5);
+	myGraph.addEdge(8, 2);
+	myGraph.addEdge(4, 2);
+	myGraph.addEdge(5, 2);
+	myGraph.addEdge(9, 2);
+	myGraph.addEdge(10, 2);
+	myGraph.addEdge(10, 8);
+	myGraph.addEdge(10, 5);
+	myGraph.addEdge(2, 4);
+	myGraph.addEdge(2, 5);
+	myGraph.addEdge(2, 8);
+	myGraph.addEdge(2, 10);
 
 	return myGraph;
 }
@@ -71,33 +95,56 @@ Graph<int> CreateMediumGraph()
 	myGraph.addVertex(6,132,124,0);
 	myGraph.addVertex(7,292,131,0);
 	myGraph.addVertex(8,659,116,0);
-	myGraph.addVertex(9,143,987,0);
+	myGraph.addVertex(9,143,387,0);
 	myGraph.addVertex(10,862,243,0);
 
 
-	myGraph.addEdge(1, 2);
 	myGraph.addEdge(1, 3);
+	myGraph.addEdge(1, 6);
 	myGraph.addEdge(1, 7);
-	myGraph.addEdge(2, 4);
-	myGraph.addEdge(3, 8);
-	myGraph.addEdge(4, 6);
-	myGraph.addEdge(4, 5);
-	myGraph.addEdge(5, 10);
-	myGraph.addEdge(7, 6);
-	myGraph.addEdge(8, 9);
-	myGraph.addEdge(9, 5);
-	myGraph.addEdge(2, 1);
-	myGraph.addEdge(3, 1);
-	myGraph.addEdge(7, 1);
-	myGraph.addEdge(4, 2);
-	myGraph.addEdge(8, 3);
-	myGraph.addEdge(6, 4);
-	myGraph.addEdge(5, 4);
-	myGraph.addEdge(10, 5);
+	myGraph.addEdge(1, 8);
+	myGraph.addEdge(6, 3);
 	myGraph.addEdge(6, 7);
-	myGraph.addEdge(9, 8);
-	myGraph.addEdge(5, 9);
-	myGraph.addEdge(9, 10);
+	myGraph.addEdge(6, 4);
+	myGraph.addEdge(6, 5);
+	myGraph.addEdge(3, 1);
+	myGraph.addEdge(3, 6);
+	myGraph.addEdge(6, 1);
+	myGraph.addEdge(3, 4);
+	myGraph.addEdge(3, 5);
+	myGraph.addEdge(3, 9);
+	myGraph.addEdge(7, 1);
+	myGraph.addEdge(7, 6);
+	myGraph.addEdge(7, 5);
+	myGraph.addEdge(7, 8);
+	myGraph.addEdge(7, 4);
+	myGraph.addEdge(9, 3);
+	myGraph.addEdge(9, 4);
+	myGraph.addEdge(4, 9);
+	myGraph.addEdge(4, 6);
+	myGraph.addEdge(4, 3);
+	myGraph.addEdge(4, 7);
+	myGraph.addEdge(4, 5);
+	myGraph.addEdge(5, 4);
+	myGraph.addEdge(5, 3);
+	myGraph.addEdge(5, 6);
+	myGraph.addEdge(5, 8);
+	myGraph.addEdge(5, 7);
+	myGraph.addEdge(5, 10);
+	myGraph.addEdge(8, 7);
+	myGraph.addEdge(8, 10);
+	myGraph.addEdge(8, 5);
+	myGraph.addEdge(8, 2);
+	myGraph.addEdge(4, 2);
+	myGraph.addEdge(5, 2);
+	myGraph.addEdge(9, 2);
+	myGraph.addEdge(10, 2);
+	myGraph.addEdge(10, 8);
+	myGraph.addEdge(10, 5);
+	myGraph.addEdge(2, 4);
+	myGraph.addEdge(2, 5);
+	myGraph.addEdge(2, 8);
+	myGraph.addEdge(2, 10);
 
 
 	return myGraph;
@@ -115,33 +162,56 @@ Graph<int> CreateLargeGraph()
 	myGraph.addVertex(6,132,124,0);
 	myGraph.addVertex(7,292,131,0);
 	myGraph.addVertex(8,659,116,0);
-	myGraph.addVertex(9,143,987,0);
+	myGraph.addVertex(9,143,387,0);
 	myGraph.addVertex(10,862,243,0);
 
 
-	myGraph.addEdge(1, 2);
 	myGraph.addEdge(1, 3);
+	myGraph.addEdge(1, 6);
 	myGraph.addEdge(1, 7);
-	myGraph.addEdge(2, 4);
-	myGraph.addEdge(3, 8);
-	myGraph.addEdge(4, 6);
-	myGraph.addEdge(4, 5);
-	myGraph.addEdge(5, 10);
-	myGraph.addEdge(7, 6);
-	myGraph.addEdge(8, 9);
-	myGraph.addEdge(9, 5);
-	myGraph.addEdge(2, 1);
-	myGraph.addEdge(3, 1);
-	myGraph.addEdge(7, 1);
-	myGraph.addEdge(4, 2);
-	myGraph.addEdge(8, 3);
-	myGraph.addEdge(6, 4);
-	myGraph.addEdge(5, 4);
-	myGraph.addEdge(10, 5);
+	myGraph.addEdge(1, 8);
+	myGraph.addEdge(6, 3);
 	myGraph.addEdge(6, 7);
-	myGraph.addEdge(9, 8);
-	myGraph.addEdge(5, 9);
-	myGraph.addEdge(9, 10);
+	myGraph.addEdge(6, 4);
+	myGraph.addEdge(6, 5);
+	myGraph.addEdge(3, 1);
+	myGraph.addEdge(3, 6);
+	myGraph.addEdge(6, 1);
+	myGraph.addEdge(3, 4);
+	myGraph.addEdge(3, 5);
+	myGraph.addEdge(3, 9);
+	myGraph.addEdge(7, 1);
+	myGraph.addEdge(7, 6);
+	myGraph.addEdge(7, 5);
+	myGraph.addEdge(7, 8);
+	myGraph.addEdge(7, 4);
+	myGraph.addEdge(9, 3);
+	myGraph.addEdge(9, 4);
+	myGraph.addEdge(4, 9);
+	myGraph.addEdge(4, 6);
+	myGraph.addEdge(4, 3);
+	myGraph.addEdge(4, 7);
+	myGraph.addEdge(4, 5);
+	myGraph.addEdge(5, 4);
+	myGraph.addEdge(5, 3);
+	myGraph.addEdge(5, 6);
+	myGraph.addEdge(5, 8);
+	myGraph.addEdge(5, 7);
+	myGraph.addEdge(5, 10);
+	myGraph.addEdge(8, 7);
+	myGraph.addEdge(8, 10);
+	myGraph.addEdge(8, 5);
+	myGraph.addEdge(8, 2);
+	myGraph.addEdge(4, 2);
+	myGraph.addEdge(5, 2);
+	myGraph.addEdge(9, 2);
+	myGraph.addEdge(10, 2);
+	myGraph.addEdge(10, 8);
+	myGraph.addEdge(10, 5);
+	myGraph.addEdge(2, 4);
+	myGraph.addEdge(2, 5);
+	myGraph.addEdge(2, 8);
+	myGraph.addEdge(2, 10);
 
 
 	return myGraph;
@@ -156,7 +226,7 @@ int main() {
 		cin >> i;
 	}
 	if(i == 1)
-		myGraph = CreateShortestGraph();
+		myGraph = CreateShortGraph();
 	if(i == 2)
 		myGraph = CreateMediumGraph();
 	if(i == 3)
@@ -302,23 +372,29 @@ int main() {
 			}
 		}
 		else if (i == 8) {
-//			vector<Vertex<int>*> vs = myGraph.getVertexSet();
-//			GraphViewer *gv = new GraphViewer(600, 600, false);
-//			gv->createWindow(600, 600);
-//			gv->defineVertexColor("blue");
-//			gv->defineEdgeColor("black");
-//			for(unsigned int j = 0; j < vs.size(); j++) {
-//				gv->addNode(vs[j]->getInfo(),vs[j]->getX(),vs[j]->getY());
-//			}
-//			for(unsigned int j = 0; j < vs.size(); j++) {
-//				for(unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
-//					if(myGraph.existsEdge(vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getInfo()))
-//						gv->addEdge(vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getAdj()[k].getDest()->getDist(),EdgeType::UNDIRECTED);
-//					else
-//						gv->addEdge(vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getAdj()[k].getDest()->getDist(),EdgeType::DIRECTED);
-//
-//				}
-//			}
+			vector<Vertex<int>*> vs = myGraph.getVertexSet();
+			GraphViewer *gv = new GraphViewer(600, 600, false);
+			gv->createWindow(600, 600);
+			gv->defineVertexColor("blue");
+			gv->defineEdgeColor("black");
+			for(unsigned int j = 0; j < vs.size(); j++) {
+				gv->addNode(vs[j]->getInfo(),vs[j]->getX(),vs[j]->getY());
+			}
+			int a = 1;
+			for(unsigned int j = 0; j < vs.size(); j++) {
+				vs[j]->setVisited(false);
+			}
+
+			for(unsigned int j = 0; j < vs.size(); j++) {
+				vs[j]->setVisited(true);
+				for(unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
+					if(myGraph.existsEdge(vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getInfo()) && !vs[j]->getAdj()[k].getDest()->getVisited())
+						gv->addEdge(a,vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),EdgeType::UNDIRECTED);
+					else if (!vs[j]->getAdj()[k].getDest()->getVisited())
+						gv->addEdge(a,vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),EdgeType::DIRECTED);
+					a++;
+				}
+			}
 		}
 	}
 }
