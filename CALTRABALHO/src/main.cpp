@@ -19,20 +19,19 @@ using namespace std;
  * Creates a Graph with 10 Vertexs
  * @return the created graph
  */
-Graph<int> CreateShortGraph()
-{
+Graph<int> CreateShortGraph() {
 	Graph<int> myGraph;
 
-	myGraph.addVertex(1,1,1);
-	myGraph.addVertex(2,658,453);
-	myGraph.addVertex(3,128,231);
-	myGraph.addVertex(4,232,323);
-	myGraph.addVertex(5,342,256);
-	myGraph.addVertex(6,132,124);
-	myGraph.addVertex(7,292,131);
-	myGraph.addVertex(8,659,116);
-	myGraph.addVertex(9,143,387);
-	myGraph.addVertex(10,680,243);
+	myGraph.addVertex(1, 1, 1);
+	myGraph.addVertex(2, 658, 453);
+	myGraph.addVertex(3, 128, 231);
+	myGraph.addVertex(4, 232, 323);
+	myGraph.addVertex(5, 342, 256);
+	myGraph.addVertex(6, 132, 124);
+	myGraph.addVertex(7, 292, 131);
+	myGraph.addVertex(8, 659, 116);
+	myGraph.addVertex(9, 143, 387);
+	myGraph.addVertex(10, 680, 243);
 
 	myGraph.addEdge(1, 3);
 	myGraph.addEdge(1, 6);
@@ -86,37 +85,35 @@ Graph<int> CreateShortGraph()
  * Creates a Graph with 25 Vertexs
  * @return the created graph
  */
-Graph<int> CreateMediumGraph()
-{
+Graph<int> CreateMediumGraph() {
 	Graph<int> myGraph;
 
-	myGraph.addVertex(1,1,1);
-	myGraph.addVertex(2,658,453);
-	myGraph.addVertex(3,128,231);
-	myGraph.addVertex(4,232,323);
-	myGraph.addVertex(5,342,256);
-	myGraph.addVertex(6,132,124);
-	myGraph.addVertex(7,292,131);
-	myGraph.addVertex(8,659,116);
-	myGraph.addVertex(9,143,387);
-	myGraph.addVertex(10,680,243);
+	myGraph.addVertex(1, 1, 1);
+	myGraph.addVertex(2, 658, 453);
+	myGraph.addVertex(3, 128, 231);
+	myGraph.addVertex(4, 232, 323);
+	myGraph.addVertex(5, 342, 256);
+	myGraph.addVertex(6, 132, 124);
+	myGraph.addVertex(7, 292, 131);
+	myGraph.addVertex(8, 659, 116);
+	myGraph.addVertex(9, 143, 387);
+	myGraph.addVertex(10, 680, 243);
 
-	myGraph.addVertex(11,9,330);
-	myGraph.addVertex(12,132,433);
-	myGraph.addVertex(13,243,540);
-	myGraph.addVertex(14,734,23);
-	myGraph.addVertex(15,314,16);
-	myGraph.addVertex(16,432,543);
-	myGraph.addVertex(17,672,623);
-	myGraph.addVertex(18,687,544);
-	myGraph.addVertex(19,465,687);
-	myGraph.addVertex(20,536,234);
-	myGraph.addVertex(21,753,243);
-	myGraph.addVertex(22,633,243);
-	myGraph.addVertex(23,143,642);
-	myGraph.addVertex(24,432,243);
-	myGraph.addVertex(25,257,243);
-
+	myGraph.addVertex(11, 9, 330);
+	myGraph.addVertex(12, 132, 433);
+	myGraph.addVertex(13, 243, 540);
+	myGraph.addVertex(14, 734, 23);
+	myGraph.addVertex(15, 314, 16);
+	myGraph.addVertex(16, 432, 543);
+	myGraph.addVertex(17, 672, 623);
+	myGraph.addVertex(18, 687, 544);
+	myGraph.addVertex(19, 465, 687);
+	myGraph.addVertex(20, 536, 234);
+	myGraph.addVertex(21, 753, 243);
+	myGraph.addVertex(22, 633, 243);
+	myGraph.addVertex(23, 143, 642);
+	myGraph.addVertex(24, 432, 243);
+	myGraph.addVertex(25, 257, 243);
 
 	myGraph.addEdge(1, 3);
 	myGraph.addEdge(1, 6);
@@ -265,65 +262,63 @@ Graph<int> CreateMediumGraph()
 	return myGraph;
 }
 
-Graph<int> CreateLargeGraph()
-{
+Graph<int> CreateLargeGraph() {
 	Graph<int> myGraph;
 
-	myGraph.addVertex(1,1,1);
-	myGraph.addVertex(2,658,453);
-	myGraph.addVertex(3,128,231);
-	myGraph.addVertex(4,232,323);
-	myGraph.addVertex(5,342,256);
-	myGraph.addVertex(6,132,124);
-	myGraph.addVertex(7,292,131);
-	myGraph.addVertex(8,659,116);
-	myGraph.addVertex(9,143,387);
-	myGraph.addVertex(10,680,243);
+	myGraph.addVertex(1, 1, 1);
+	myGraph.addVertex(2, 658, 453);
+	myGraph.addVertex(3, 128, 231);
+	myGraph.addVertex(4, 232, 323);
+	myGraph.addVertex(5, 342, 256);
+	myGraph.addVertex(6, 132, 124);
+	myGraph.addVertex(7, 292, 131);
+	myGraph.addVertex(8, 659, 116);
+	myGraph.addVertex(9, 143, 387);
+	myGraph.addVertex(10, 680, 243);
 
-	myGraph.addVertex(11,9,330);
-	myGraph.addVertex(12,132,433);
-	myGraph.addVertex(13,243,540);
-	myGraph.addVertex(14,734,23);
-	myGraph.addVertex(15,314,16);
-	myGraph.addVertex(16,432,543);
-	myGraph.addVertex(17,672,623);
-	myGraph.addVertex(18,687,544);
-	myGraph.addVertex(19,465,687);
-	myGraph.addVertex(20,536,234);
+	myGraph.addVertex(11, 9, 330);
+	myGraph.addVertex(12, 132, 433);
+	myGraph.addVertex(13, 243, 540);
+	myGraph.addVertex(14, 734, 23);
+	myGraph.addVertex(15, 314, 16);
+	myGraph.addVertex(16, 432, 543);
+	myGraph.addVertex(17, 672, 623);
+	myGraph.addVertex(18, 687, 544);
+	myGraph.addVertex(19, 465, 687);
+	myGraph.addVertex(20, 536, 234);
 
-	myGraph.addVertex(21,721,701);
-	myGraph.addVertex(22,43,76);
-	myGraph.addVertex(23,643,244);
-	myGraph.addVertex(24,75,653);
-	myGraph.addVertex(25,263,687);
-	myGraph.addVertex(26,723,132);
-	myGraph.addVertex(27,362,523);
-	myGraph.addVertex(28,143,322);
-	myGraph.addVertex(29,313,421);
-	myGraph.addVertex(30,523,652);
+	myGraph.addVertex(21, 721, 701);
+	myGraph.addVertex(22, 43, 76);
+	myGraph.addVertex(23, 643, 244);
+	myGraph.addVertex(24, 75, 653);
+	myGraph.addVertex(25, 263, 687);
+	myGraph.addVertex(26, 723, 132);
+	myGraph.addVertex(27, 362, 523);
+	myGraph.addVertex(28, 143, 322);
+	myGraph.addVertex(29, 313, 421);
+	myGraph.addVertex(30, 523, 652);
 
-	myGraph.addVertex(31,462,423);
-	myGraph.addVertex(32,462,323);
-	myGraph.addVertex(33,362,323);
-	myGraph.addVertex(34,462,523);
-	myGraph.addVertex(35,621,523);
-	myGraph.addVertex(36,462,123);
-	myGraph.addVertex(37,562,23);
-	myGraph.addVertex(38,413,234);
-	myGraph.addVertex(39,684,145);
-	myGraph.addVertex(40,567,89);
+	myGraph.addVertex(31, 462, 423);
+	myGraph.addVertex(32, 462, 323);
+	myGraph.addVertex(33, 362, 323);
+	myGraph.addVertex(34, 462, 523);
+	myGraph.addVertex(35, 621, 523);
+	myGraph.addVertex(36, 462, 123);
+	myGraph.addVertex(37, 562, 23);
+	myGraph.addVertex(38, 413, 234);
+	myGraph.addVertex(39, 684, 145);
+	myGraph.addVertex(40, 567, 89);
 
-	myGraph.addVertex(41,314,83);
-	myGraph.addVertex(42,462,85);
-	myGraph.addVertex(43,223,123);
-	myGraph.addVertex(44,486,234);
-	myGraph.addVertex(45,521,133);
-	myGraph.addVertex(46,52,283);
-	myGraph.addVertex(47,85,462);
-	myGraph.addVertex(48,123,23);
-	myGraph.addVertex(49,234,486);
-	myGraph.addVertex(50,133,521);
-
+	myGraph.addVertex(41, 314, 83);
+	myGraph.addVertex(42, 462, 85);
+	myGraph.addVertex(43, 223, 123);
+	myGraph.addVertex(44, 486, 234);
+	myGraph.addVertex(45, 521, 133);
+	myGraph.addVertex(46, 52, 283);
+	myGraph.addVertex(47, 85, 462);
+	myGraph.addVertex(48, 123, 23);
+	myGraph.addVertex(49, 234, 486);
+	myGraph.addVertex(50, 133, 521);
 
 	myGraph.addEdge(1, 48);
 	myGraph.addEdge(1, 22);
@@ -621,35 +616,38 @@ Graph<int> CreateLargeGraph()
 int main() {
 	Graph<int> myGraph;
 	int i = 0;
-	while(i != 1 && i != 2 && i != 3) {
-		cout << "Shortest Graph - 1 | Medium Graph - 2 | Large Graph - 3" << endl;
+	while (i != 1 && i != 2 && i != 3) {
+		cout << "Shortest Graph - 1 | Medium Graph - 2 | Large Graph - 3"
+				<< endl;
 		cin >> i;
 	}
-	if(i == 1)
+	if (i == 1)
 		myGraph = CreateShortGraph();
-	if(i == 2)
+	if (i == 2)
 		myGraph = CreateMediumGraph();
-	if(i == 3)
+	if (i == 3)
 		myGraph = CreateLargeGraph();
 
 	bool quit = false;
 	i = 0;
 	vector<Automovel> a;
 	vector<RefuelStation> r;
-	while(!quit) {
-		cout << "0 - quit | 1 - add Vehicle | 2 - Add Refuel Station | 3 - Add Point | 4 - Add Edge | 5 - Calculate Shortest Distance Between two points in vehicle A " << endl <<
-				"6 - List Vehicle | 7 - List Refuel Stations | 8 - GraphViewer | 9 - Change Graph | 10 - Remove Vehicle | 11 - Remove Refuel Station | 12 - Change Vehicle | 13 - Change Refuel Station" << endl;
+	while (!quit) {
+		cout
+				<< "0 - quit | 1 - add Vehicle | 2 - Add Refuel Station | 5 - Change Vehicle | 4 - Change Refuel Station | 5 - Remove Vehicle | 6 - Remove Refuel Station"
+				<< endl
+				<< "7 - List Vehicle | 8 - List Refuel Stations | 9 - GraphViewer | 10 - Change Graph | 11 - Calculate Shortest Distance Between two points in vehicle A "
+				<< endl;
 		cin >> i;
 		if (i == 0) {
 			quit = true;
-		}
-		else if (i == 1) {
+		} else if (i == 1) {
 			bool add = true;
 			int id;
 			float battery, consume;
 			cout << "Id of the Vehicle %of the battery and %/km";
 			cin >> id >> battery >> consume;
-			for(unsigned int j = 0; j < a.size(); j++) {
+			for (unsigned int j = 0; j < a.size(); j++) {
 				if (a[j].getId() == id) {
 					cout << "Vehicle  already exists" << endl;
 					add = false;
@@ -657,23 +655,24 @@ int main() {
 			}
 			if (battery > 100 || battery < 0) {
 				cout << "Battery must be a value between 100 and 0" << endl;
-				add =false;
+				add = false;
 			}
 			if (consume < 0) {
 				cout << "The consume of a vehicle must be positive" << endl;
 				add = false;
 			}
 			if (add) {
-				a.push_back(*new Automovel(id,battery,consume));
-				cout << a.back().getId() << " " << a.back().getConsume() << " " << a.back().getBattery() << endl;
+				a.push_back(*new Automovel(id, battery, consume));
+				cout << a.back().getId() << " " << a.back().getConsume() << " "
+						<< a.back().getBattery() << endl;
 			}
-		}
-		else if (i == 2) {
+		} else if (i == 2) {
 			bool add = true;
-			int id,velocity,z;
-			cout << "Id of the Refuel Station Rechargement Velocity and Altitude";
+			int id, velocity, z;
+			cout
+					<< "Id of the Refuel Station Rechargement Velocity and Altitude";
 			cin >> id >> velocity >> z;
-			for(unsigned int j = 0; j < r.size(); j++) {
+			for (unsigned int j = 0; j < r.size(); j++) {
 				if (r[j].getId() == id) {
 					cout << "Refuel Station already exists" << endl;
 					add = false;
@@ -684,161 +683,14 @@ int main() {
 				add = false;
 			}
 			if (add) {
-				r.push_back(*new RefuelStation(id,velocity));
+				r.push_back(*new RefuelStation(id, velocity));
 				myGraph.getVertex(id)->setIsRefuelStation(true);
 				myGraph.getVertex(id)->setZ(z);
-				cout << r.back().getId() << " " << r.back().getVelocity() << endl;
+				cout << r.back().getId() << " " << r.back().getVelocity()
+						<< endl;
 			}
 		}
-		else if (i == 3) {
-			int id,x,y;
-			cout << "Id x and y" << endl;
-			cin >> id >> x >> y;
-			if(myGraph.existsPoint(id)) {
-				cout << "Point already exists" << endl;
-			}
-			else {
-				myGraph.addVertex(id,x,y);
-			}
-		}
-		else if (i == 4) {
-			int id,id2;
-			bool add = true;
-			cout << "Id P1 Id P2" << endl;
-			cin >> id >> id2;
-			if(!myGraph.existsPoint(id) || !myGraph.existsPoint(id2)) {
-				cout << "One Point doesn´t exist" << endl;
-				add = false;
-			}
-			else if(myGraph.existsEdge(id,id2)) {
-				cout << "Edge already exists" << endl;
-				add = false;
-			}
-			if (add) {
-				myGraph.addEdge(id,id2);
-			}
-		}
-		else if (i ==5) {
-			if(a.size() == 0)
-				cout << "No Vehicles available" << endl;
-			if(r.size() == 0)
-				cout << "No Refuel Stations available" << endl;
-			else if (a.size() != 0) {
-				int start, end, vehicleid;
-				cout << "Start point and end point and vehicle id" << endl;
-				cin >> start >> end >> vehicleid;
-				unsigned int j;
-				for (j = 0; j < a.size(); j++) {
-					if (a[j].getId() == vehicleid)
-						break;
-				}
-				if (!myGraph.existsPoint(start))
-					cout << "Doens't exists the point " << start << endl;
-				if (!myGraph.existsPoint(end))
-					cout << "Doens't exists the point " << end << endl;
-				if (a[j].getId() != vehicleid) {
-					cout << "There is no vehicle with id = " << vehicleid
-							<< endl;
-				} else if (myGraph.existsPoint(start) && myGraph.existsPoint(end)){
-					myGraph.checkIsPointAndRefuelStation(r);
-					myGraph.getInitialPath(start,end, &a[j],r);
-					for(unsigned int k = 0; k < r.size(); k++) {
-					r[k].setPassed(false);
-					}
-				}
-			}
-		}
-		else if(i == 6) {
-			if(a.size() == 0)
-				cout << "No Vehicles available" << endl;
-			else {
-				cout << "Vehicle ID              BATTERY           CONSUME" << endl;
-				for(unsigned int j = 0; j < a.size(); j++) {
-					cout << a[j].getId() << "                       " << a[j].getBattery() << "               " << a[j].getConsume() << endl;
-				}
-			}
-		}
-		else if(i == 7) {
-			if(r.size() == 0)
-				cout << "No Refuel Stations available" << endl;
-			else {
-				cout << "Refuel Station ID         X               Y             Z              Velocity" << endl;
-				for(unsigned int j = 0; j < r.size(); j++) {
-					cout << r[j].getId() << "                         " << myGraph.getVertex(r[j].getId())->getX() << "               " << myGraph.getVertex(r[j].getId())->getY() << "             " << myGraph.getVertex(r[j].getId())->getZ() << "              " << r[j].getVelocity() << endl;
-				}
-			}
-		}
-		else if (i == 8) {
-			vector<Vertex<int>*> vs = myGraph.getVertexSet();
-			GraphViewer *gv = new GraphViewer(800, 700, false);
-			gv->defineEdgeCurved(false);
-			gv->createWindow(800, 700);
-			gv->defineVertexColor("blue");
-			gv->defineEdgeColor("black");
-			for(unsigned int j = 0; j < vs.size(); j++) {
-				gv->addNode(vs[j]->getInfo(),vs[j]->getX(),vs[j]->getY());
-			}
-			int a = 1;
-			for(unsigned int j = 0; j < vs.size(); j++) {
-				vs[j]->setVisited(false);
-			}
-
-			for(unsigned int j = 0; j < vs.size(); j++) {
-				vs[j]->setVisited(true);
-				for(unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
-					if(myGraph.existsEdge(vs[j]->getAdj()[k].getDest()->getInfo(),vs[j]->getInfo()) && !vs[j]->getAdj()[k].getDest()->getVisited())
-						gv->addEdge(a,vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),EdgeType::UNDIRECTED);
-					else if (!vs[j]->getAdj()[k].getDest()->getVisited())
-						gv->addEdge(a,vs[j]->getInfo(),vs[j]->getAdj()[k].getDest()->getInfo(),EdgeType::DIRECTED);
-					a++;
-				}
-			}
-		}
-		if(i == 9) {
-			int j = 0;
-			cout << "Shortest Graph - 1 | Medium Graph - 2 | Large Graph - 3" << endl;
-			cin >> j;
-			if(j == 1)
-				myGraph = CreateShortGraph();
-			else if(j == 2)
-				myGraph = CreateMediumGraph();
-			else if(j == 3)
-				myGraph = CreateLargeGraph();
-			else
-				cout << "Invalid Number" << endl;
-		}
-		if (i == 10) {
-			int id;
-			cout << "Id of Vehicle to Remove" << endl;
-			cin >> id;
-			unsigned int j;
-			for(j = 0; j < a.size(); j++) {
-				if(a[j].getId() == id)
-					break;
-			}
-			if(id != a[j].getId())
-				cout << "Vehicle with id: " << id << " doesn´t exist" << endl;
-			else {
-				a.erase(a.begin() + j);
-			}
-		}
-		if (i == 11) {
-			int id;
-			cout << "Id of Refuel Station to Remove" << endl;
-			cin >> id;
-			unsigned int j;
-			for(j = 0; j < r.size(); j++) {
-				if(r[j].getId() == id)
-					break;
-			}
-			if(id != r[j].getId())
-				cout << "Refuel Station with id: " << id << " doesn´t exist" << endl;
-			else {
-				r.erase(r.begin() + j);
-				myGraph.getVertex(id)->setIsRefuelStation(false);
-			}
-		}
-		if (i == 12) {
+		if (i == 3) {
 			int id;
 			cout << "Id of Vehicle to Change" << endl;
 			cin >> id;
@@ -856,7 +708,7 @@ int main() {
 				cin >> battery >> consume;
 				if (battery > 100 || battery < 0) {
 					cout << "Battery must be a value between 100 and 0" << endl;
-					add =false;
+					add = false;
 				}
 				if (consume < 0) {
 					cout << "The consume of a vehicle must be positive" << endl;
@@ -868,7 +720,7 @@ int main() {
 				}
 			}
 		}
-		if (i == 13) {
+		if (i == 4) {
 			int id;
 			cout << "Id of Refuel Station to Change" << endl;
 			cin >> id;
@@ -878,7 +730,8 @@ int main() {
 					break;
 			}
 			if (id != r[j].getId())
-				cout << "Refuel Station with id: " << id << " doesn´t exist" << endl;
+				cout << "Refuel Station with id: " << id << " doesn´t exist"
+						<< endl;
 			else {
 				int velocity;
 				bool add = true;
@@ -894,6 +747,149 @@ int main() {
 				}
 			}
 		}
+		if (i == 5) {
+			int id;
+			cout << "Id of Vehicle to Remove" << endl;
+			cin >> id;
+			unsigned int j;
+			for (j = 0; j < a.size(); j++) {
+				if (a[j].getId() == id)
+					break;
+			}
+			if (id != a[j].getId())
+				cout << "Vehicle with id: " << id << " doesn´t exist" << endl;
+			else {
+				a.erase(a.begin() + j);
+			}
+		}
+		if (i == 6) {
+			int id;
+			cout << "Id of Refuel Station to Remove" << endl;
+			cin >> id;
+			unsigned int j;
+			for (j = 0; j < r.size(); j++) {
+				if (r[j].getId() == id)
+					break;
+			}
+			if (id != r[j].getId())
+				cout << "Refuel Station with id: " << id << " doesn´t exist"
+						<< endl;
+			else {
+				r.erase(r.begin() + j);
+				myGraph.getVertex(id)->setIsRefuelStation(false);
+			}
+		} else if (i == 7) {
+			if (a.size() == 0)
+				cout << "No Vehicles available" << endl;
+			else {
+				cout << "Vehicle ID              BATTERY           CONSUME"
+						<< endl;
+				for (unsigned int j = 0; j < a.size(); j++) {
+					cout << a[j].getId() << "                       "
+							<< a[j].getBattery() << "               "
+							<< a[j].getConsume() << endl;
+				}
+			}
+		} else if (i == 8) {
+			if (r.size() == 0)
+				cout << "No Refuel Stations available" << endl;
+			else {
+				cout
+						<< "Refuel Station ID         X               Y             Z              Velocity"
+						<< endl;
+				for (unsigned int j = 0; j < r.size(); j++) {
+					cout << r[j].getId() << "                         "
+							<< myGraph.getVertex(r[j].getId())->getX()
+							<< "               "
+							<< myGraph.getVertex(r[j].getId())->getY()
+							<< "             "
+							<< myGraph.getVertex(r[j].getId())->getZ()
+							<< "              " << r[j].getVelocity() << endl;
+				}
+			}
+		} else if (i == 9) {
+			vector<Vertex<int>*> vs = myGraph.getVertexSet();
+			GraphViewer *gv = new GraphViewer(800, 700, false);
+			gv->defineEdgeCurved(false);
+			gv->createWindow(800, 700);
+			gv->defineVertexColor("blue");
+			gv->defineEdgeColor("black");
+			for (unsigned int j = 0; j < vs.size(); j++) {
+				gv->addNode(vs[j]->getInfo(), vs[j]->getX(), vs[j]->getY());
+			}
+			int a = 1;
+			for (unsigned int j = 0; j < vs.size(); j++) {
+				vs[j]->setVisited(false);
+			}
+
+			for (unsigned int j = 0; j < vs.size(); j++) {
+				vs[j]->setVisited(true);
+				for (unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
+					if (myGraph.existsEdge(
+							vs[j]->getAdj()[k].getDest()->getInfo(),
+							vs[j]->getInfo())
+							&& !vs[j]->getAdj()[k].getDest()->getVisited())
+						gv->addEdge(a, vs[j]->getInfo(),
+								vs[j]->getAdj()[k].getDest()->getInfo(),
+								EdgeType::UNDIRECTED);
+					else if (!vs[j]->getAdj()[k].getDest()->getVisited())
+						gv->addEdge(a, vs[j]->getInfo(),
+								vs[j]->getAdj()[k].getDest()->getInfo(),
+								EdgeType::DIRECTED);
+					a++;
+				}
+			}
+		}
+		if (i == 10) {
+			int j = 0;
+			cout << "Shortest Graph - 1 | Medium Graph - 2 | Large Graph - 3"
+					<< endl;
+			cin >> j;
+			if (j == 1)
+				myGraph = CreateShortGraph();
+			else if (j == 2)
+				myGraph = CreateMediumGraph();
+			else if (j == 3)
+				myGraph = CreateLargeGraph();
+			else
+				cout << "Invalid Number" << endl;
+		} else if (i == 11) {
+			bool add = true;
+			if (a.size() == 0)
+				cout << "No Vehicles available" << endl;
+			if (r.size() == 0)
+				cout << "No Refuel Stations available" << endl;
+			else if (a.size() != 0) {
+				int start, end, vehicleid;
+				cout << "Start point and end point and vehicle id" << endl;
+				cin >> start >> end >> vehicleid;
+				unsigned int j;
+				for (j = 0; j < a.size(); j++) {
+					if (a[j].getId() == vehicleid)
+						break;
+				}
+				if (!myGraph.existsPoint(start)) {
+					cout << "Doens't exists the point " << start << endl;
+					add = false;
+				}
+				if (!myGraph.existsPoint(end)) {
+					cout << "Doens't exists the point " << end << endl;
+					add = false;
+				}
+				if (a[j].getId() != vehicleid) {
+					cout << "There is no vehicle with id = " << vehicleid
+							<< endl;
+					add = false;
+				}
+				if (add) {
+					myGraph.getInitialPath(start, end, &a[j], r);
+					for (unsigned int k = 0; k < r.size(); k++) {
+						r[k].setPassed(false);
+					}
+				}
+			}
+		}
+
 	}
 }
 
