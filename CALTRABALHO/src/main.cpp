@@ -1005,7 +1005,7 @@ int main() {
 //						}
 //					}
 					int nTimeStart = GetMilliCount();
-					myGraph.getInitialPath(start, end, &a[x], r,gv);
+					myGraph.getInitialPath(start, end, &a[x], r);
 					cout << "Time Elapsed To Calculate: " << GetMilliSpan( nTimeStart ) << endl;
 					for (unsigned int k = 0; k < r.size(); k++) {
 						r[k].setPassed(false);
@@ -1015,5 +1015,5 @@ int main() {
 		}
 
 	}
-}
+
 
