@@ -781,7 +781,6 @@ void Graph<T>::getFullPath(const T &s, Automovel* a, GraphViewer *gv) {
 				path[i]->path->info);
 		a->setConsume(consume * consumePerc);
 		if (a->checkDist(path[i]->dist - path[i]->path->dist)) {
-			cout << "Path is Refuel Station: " << path[i]->isRefuelStation << endl;
 			if(!path[i]->isRefuelStation)
 				gv->setVertexColor(path[i]->info,"yellow");
 			else

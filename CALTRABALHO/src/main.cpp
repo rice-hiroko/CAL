@@ -616,12 +616,88 @@ Graph<int> CreateLargeGraph() {
 	return myGraph;
 }
 
+Graph<int> CreateVeryLargeGraph() {
+	Graph<int> myGraph;
+
+	ifstream inFile;
+
+	//Ler o ficheiro nos.txt
+	inFile.open("pontos.txt");
+
+	if (!inFile) {
+	    cerr << "Unable to open file datafile.txt";
+	    exit(1);   // call system to stop
+	}
+
+	std::string   line;
+
+	int idNo=0;
+	int LATDEG=0;
+	int LONDEG=0;
+	int LATRAD=0;
+	int LONRAD=0;
+
+	while(std::getline(inFile, line))
+	{
+	    std::stringstream linestream(line);
+	    std::string         data;
+
+	    linestream >> idNo;
+
+	    std::getline(linestream, data, ';');  // read up-to the first ; (discard ;).
+	    linestream >> LATDEG;
+	    std::getline(linestream, data, ';');  // read up-to the first ; (discard ;).
+	    linestream >> LONDEG;
+	    std::getline(linestream, data, ';');  // read up-to the first ; (discard ;).
+	    linestream >> LONRAD;
+	    std::getline(linestream, data);  // read up-to the first ; (discard ;).
+	    linestream >> LATRAD;
+	    myGraph.addVertex(idNo,calculateX(LONDEG,800),calculateY(LATDEG,700,800));
+
+	}
+
+	inFile.close();
+
+
+	//Ler o ficheiro arestas.txt
+	inFile.open("arestas.txt");
+
+		if (!inFile) {
+		    cerr << "Unable to open file datafile.txt";
+		    exit(1);   // call system to stop
+		}
+
+		int idAresta=0;
+		int idNoOrigem=0;
+		int idNoDestino=0;
+
+		while(std::getline(inFile, line))
+		{
+		    std::stringstream linestream(line);
+		    std::string data;
+
+
+		    linestream >> idAresta;
+
+		    std::getline(linestream, data, ';');  // read up-to the first ; (discard ;).
+		    linestream >> idNoOrigem;
+		    std::getline(linestream, data, ';');  // read up-to the first ; (discard ;).
+		    linestream >> idNoDestino;
+		    myGraph.addEdge(idNoOrigem,idNoDestino);
+		    myGraph.addEdge(idNoDestino,idNoOrigem);
+
+		}
+
+		inFile.close();
+
+	return myGraph;
+}
 //alterei
 int main() {
 	Graph<int> myGraph;
 	int i = 0;
-	while (i != 1 && i != 2 && i != 3) {
-		cout << "Shortest Graph - 1 | Medium Graph - 2 | Large Graph - 3"
+	while (i != 1 && i != 2 && i != 3 && i != 4) {
+		cout << "Shortest Graph - 1 | Medium Graph - 2 | Large Graph - 3 | Very Large Graph - 4"
 				<< endl;
 		cin >> i;
 	}
@@ -631,6 +707,8 @@ int main() {
 		myGraph = CreateMediumGraph();
 	if (i == 3)
 		myGraph = CreateLargeGraph();
+	if (i == 4)
+		myGraph = CreateVeryLargeGraph();
 
 	bool quit = false;
 	i = 0;
@@ -640,7 +718,7 @@ int main() {
 		cout
 				<< "0 - quit | 1 - add Vehicle | 2 - Add Refuel Station | 3 - Change Vehicle | 4 - Change Refuel Station | 5 - Remove Vehicle | 6 - Remove Refuel Station"
 				<< endl
-				<< "7 - List Vehicle | 8 - List Refuel Stations | 9 - GraphViewer | 10 - Change Graph | 11 - Calculate Shortest Distance Between two points in vehicle A "
+				<< "7 - List Vehicle | 8 - List Refuel Stations | 9 - GraphViewer (NOT WORKING) | 10 - Change Graph | 11 - Calculate Shortest Distance Between two points in vehicle A "
 				<< endl;
 		cin >> i;
 		if (i == 0) {
@@ -811,41 +889,42 @@ int main() {
 							<< "              " << r[j].getVelocity() << endl;
 				}
 			}
-		} else if (i == 9) {
-			vector<Vertex<int>*> vs = myGraph.getVertexSet();
-			GraphViewer *gv = new GraphViewer(800, 700, false);
-			gv->defineEdgeCurved(false);
-			gv->createWindow(800, 700);
-			gv->defineVertexColor("blue");
-			gv->defineEdgeColor("black");
-			for (unsigned int j = 0; j < vs.size(); j++) {
-				gv->addNode(vs[j]->getInfo(), vs[j]->getX(), vs[j]->getY());
-				if(vs[j]->getIsRefuelStation()) {
-					gv->setVertexColor(vs[j]->getInfo(),"red");
-				}
-			}
-			int a = 1;
-			for (unsigned int j = 0; j < vs.size(); j++) {
-				vs[j]->setVisited(false);
-			}
-
-			for (unsigned int j = 0; j < vs.size(); j++) {
-				vs[j]->setVisited(true);
-				for (unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
-					if (myGraph.existsEdge(
-							vs[j]->getAdj()[k].getDest()->getInfo(),
-							vs[j]->getInfo())
-							&& !vs[j]->getAdj()[k].getDest()->getVisited())
-						gv->addEdge(a, vs[j]->getInfo(),
-								vs[j]->getAdj()[k].getDest()->getInfo(),
-								EdgeType::UNDIRECTED);
-					else if (!vs[j]->getAdj()[k].getDest()->getVisited())
-						gv->addEdge(a, vs[j]->getInfo(),
-								vs[j]->getAdj()[k].getDest()->getInfo(),
-								EdgeType::DIRECTED);
-					a++;
-				}
-			}
+		}
+//		else if (i == 9) {
+//			vector<Vertex<int>*> vs = myGraph.getVertexSet();
+//			GraphViewer *gv = new GraphViewer(800, 700, false);
+//			gv->defineEdgeCurved(false);
+//			gv->createWindow(800, 700);
+//			gv->defineVertexColor("blue");
+//			gv->defineEdgeColor("black");
+//			for (unsigned int j = 0; j < vs.size(); j++) {
+//				gv->addNode(vs[j]->getInfo(), vs[j]->getX(), vs[j]->getY());
+//				if(vs[j]->getIsRefuelStation()) {
+//					gv->setVertexColor(vs[j]->getInfo(),"red");
+//				}
+//			}
+//			int a = 1;
+//			for (unsigned int j = 0; j < vs.size(); j++) {
+//				vs[j]->setVisited(false);
+//			}
+//
+//			for (unsigned int j = 0; j < vs.size(); j++) {
+//				vs[j]->setVisited(true);
+//				for (unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
+//					if (myGraph.existsEdge(
+//							vs[j]->getAdj()[k].getDest()->getInfo(),
+//							vs[j]->getInfo())
+//							&& !vs[j]->getAdj()[k].getDest()->getVisited())
+//						gv->addEdge(a, vs[j]->getInfo(),
+//								vs[j]->getAdj()[k].getDest()->getInfo(),
+//								EdgeType::UNDIRECTED);
+//					else if (!vs[j]->getAdj()[k].getDest()->getVisited())
+//						gv->addEdge(a, vs[j]->getInfo(),
+//								vs[j]->getAdj()[k].getDest()->getInfo(),
+//								EdgeType::DIRECTED);
+//					a++;
+//				}
+//			}
 		}
 		if (i == 10) {
 			int j = 0;
@@ -889,42 +968,42 @@ int main() {
 					add = false;
 				}
 				if (add) {
-					vector<Vertex<int>*> vs = myGraph.getVertexSet();
-					GraphViewer *gv = new GraphViewer(800, 700, false);
-					gv->defineEdgeCurved(false);
-					gv->createWindow(800, 700);
-					gv->defineVertexColor("blue");
-					gv->defineEdgeColor("black");
-					for (unsigned int k = 0; k < vs.size(); k++) {
-						gv->addNode(vs[k]->getInfo(), vs[k]->getX(), vs[k]->getY());
-						if(vs[k]->getIsRefuelStation()) {
-							gv->setVertexColor(vs[k]->getInfo(),"red");
-						}
-					}
-					int b = 1;
-					for (unsigned int j = 0; j < vs.size(); j++) {
-						vs[j]->setVisited(false);
-					}
-
-					for (unsigned int j = 0; j < vs.size(); j++) {
-						vs[j]->setVisited(true);
-						for (unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
-							if (myGraph.existsEdge(
-									vs[j]->getAdj()[k].getDest()->getInfo(),
-									vs[j]->getInfo())
-									&& !vs[j]->getAdj()[k].getDest()->getVisited()) {
-								gv->addEdge(b, vs[j]->getInfo(),
-										vs[j]->getAdj()[k].getDest()->getInfo(),
-										EdgeType::UNDIRECTED);
-							}
-							else if (!vs[j]->getAdj()[k].getDest()->getVisited()) {
-								gv->addEdge(b, vs[j]->getInfo(),
-										vs[j]->getAdj()[k].getDest()->getInfo(),
-										EdgeType::DIRECTED);
-							}
-							b++;
-						}
-					}
+//					vector<Vertex<int>*> vs = myGraph.getVertexSet();
+//					GraphViewer *gv = new GraphViewer(800, 700, false);
+//					gv->defineEdgeCurved(false);
+//					gv->createWindow(800, 700);
+//					gv->defineVertexColor("blue");
+//					gv->defineEdgeColor("black");
+//					for (unsigned int k = 0; k < vs.size(); k++) {
+//						gv->addNode(vs[k]->getInfo(), vs[k]->getX(), vs[k]->getY());
+//						if(vs[k]->getIsRefuelStation()) {
+//							gv->setVertexColor(vs[k]->getInfo(),"red");
+//						}
+//					}
+//					int b = 1;
+//					for (unsigned int j = 0; j < vs.size(); j++) {
+//						vs[j]->setVisited(false);
+//					}
+//
+//					for (unsigned int j = 0; j < vs.size(); j++) {
+//						vs[j]->setVisited(true);
+//						for (unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
+//							if (myGraph.existsEdge(
+//									vs[j]->getAdj()[k].getDest()->getInfo(),
+//									vs[j]->getInfo())
+//									&& !vs[j]->getAdj()[k].getDest()->getVisited()) {
+//								gv->addEdge(b, vs[j]->getInfo(),
+//										vs[j]->getAdj()[k].getDest()->getInfo(),
+//										EdgeType::UNDIRECTED);
+//							}
+//							else if (!vs[j]->getAdj()[k].getDest()->getVisited()) {
+//								gv->addEdge(b, vs[j]->getInfo(),
+//										vs[j]->getAdj()[k].getDest()->getInfo(),
+//										EdgeType::DIRECTED);
+//							}
+//							b++;
+//						}
+//					}
 					int nTimeStart = GetMilliCount();
 					myGraph.getInitialPath(start, end, &a[x], r,gv);
 					cout << "Time Elapsed To Calculate: " << GetMilliSpan( nTimeStart ) << endl;
