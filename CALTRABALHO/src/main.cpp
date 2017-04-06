@@ -262,6 +262,10 @@ Graph<int> CreateMediumGraph() {
 	return myGraph;
 }
 
+/**
+ * Creates a Graph with 50 Vertexs
+ * @return the created graph
+ */
 Graph<int> CreateLargeGraph() {
 	Graph<int> myGraph;
 
@@ -634,7 +638,7 @@ int main() {
 	vector<RefuelStation> r;
 	while (!quit) {
 		cout
-				<< "0 - quit | 1 - add Vehicle | 2 - Add Refuel Station | 5 - Change Vehicle | 4 - Change Refuel Station | 5 - Remove Vehicle | 6 - Remove Refuel Station"
+				<< "0 - quit | 1 - add Vehicle | 2 - Add Refuel Station | 3 - Change Vehicle | 4 - Change Refuel Station | 5 - Remove Vehicle | 6 - Remove Refuel Station"
 				<< endl
 				<< "7 - List Vehicle | 8 - List Refuel Stations | 9 - GraphViewer | 10 - Change Graph | 11 - Calculate Shortest Distance Between two points in vehicle A "
 				<< endl;
@@ -816,6 +820,9 @@ int main() {
 			gv->defineEdgeColor("black");
 			for (unsigned int j = 0; j < vs.size(); j++) {
 				gv->addNode(vs[j]->getInfo(), vs[j]->getX(), vs[j]->getY());
+				if(vs[j]->getIsRefuelStation()) {
+					gv->setVertexColor(vs[j]->getInfo(),"red");
+				}
 			}
 			int a = 1;
 			for (unsigned int j = 0; j < vs.size(); j++) {
@@ -863,9 +870,9 @@ int main() {
 				int start, end, vehicleid;
 				cout << "Start point and end point and vehicle id" << endl;
 				cin >> start >> end >> vehicleid;
-				unsigned int j;
-				for (j = 0; j < a.size(); j++) {
-					if (a[j].getId() == vehicleid)
+				unsigned int x;
+				for (x = 0; x < a.size(); x++) {
+					if (a[x].getId() == vehicleid)
 						break;
 				}
 				if (!myGraph.existsPoint(start)) {
@@ -876,13 +883,51 @@ int main() {
 					cout << "Doens't exists the point " << end << endl;
 					add = false;
 				}
-				if (a[j].getId() != vehicleid) {
+				if (a[x].getId() != vehicleid) {
 					cout << "There is no vehicle with id = " << vehicleid
 							<< endl;
 					add = false;
 				}
 				if (add) {
-					myGraph.getInitialPath(start, end, &a[j], r);
+					vector<Vertex<int>*> vs = myGraph.getVertexSet();
+					GraphViewer *gv = new GraphViewer(800, 700, false);
+					gv->defineEdgeCurved(false);
+					gv->createWindow(800, 700);
+					gv->defineVertexColor("blue");
+					gv->defineEdgeColor("black");
+					for (unsigned int k = 0; k < vs.size(); k++) {
+						gv->addNode(vs[k]->getInfo(), vs[k]->getX(), vs[k]->getY());
+						if(vs[k]->getIsRefuelStation()) {
+							gv->setVertexColor(vs[k]->getInfo(),"red");
+						}
+					}
+					int b = 1;
+					for (unsigned int j = 0; j < vs.size(); j++) {
+						vs[j]->setVisited(false);
+					}
+
+					for (unsigned int j = 0; j < vs.size(); j++) {
+						vs[j]->setVisited(true);
+						for (unsigned int k = 0; k < vs[j]->getAdj().size(); k++) {
+							if (myGraph.existsEdge(
+									vs[j]->getAdj()[k].getDest()->getInfo(),
+									vs[j]->getInfo())
+									&& !vs[j]->getAdj()[k].getDest()->getVisited()) {
+								gv->addEdge(b, vs[j]->getInfo(),
+										vs[j]->getAdj()[k].getDest()->getInfo(),
+										EdgeType::UNDIRECTED);
+							}
+							else if (!vs[j]->getAdj()[k].getDest()->getVisited()) {
+								gv->addEdge(b, vs[j]->getInfo(),
+										vs[j]->getAdj()[k].getDest()->getInfo(),
+										EdgeType::DIRECTED);
+							}
+							b++;
+						}
+					}
+					int nTimeStart = GetMilliCount();
+					myGraph.getInitialPath(start, end, &a[x], r,gv);
+					cout << "Time Elapsed To Calculate: " << GetMilliSpan( nTimeStart ) << endl;
 					for (unsigned int k = 0; k < r.size(); k++) {
 						r[k].setPassed(false);
 					}
