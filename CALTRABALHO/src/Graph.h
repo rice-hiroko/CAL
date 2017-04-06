@@ -267,8 +267,8 @@ public:
 	bool isDAG();
 	void bellmanFordShortestPath(const T &s);
 	void dijkstraShortestPath(const T &s, Automovel* a);
-	void getInitialPath(const T &s, Automovel* a, vector<RefuelStation> r);
-	void getNearbyStation(const T &s, Automovel* a, vector<RefuelStation> r);
+	void getInitialPath(const T &x, const T &s, Automovel* a, vector<RefuelStation> r);
+	void getNearbyStation(const T &x, const T &s, Automovel* a, vector<RefuelStation> r);
 	void getFullPath(const T &s, Automovel* a);
 	void checkIsPointAndRefuelStation(vector<RefuelStation> r);
 	float calculateConsume(const T &s, const T &x);
@@ -664,7 +664,6 @@ void Graph<T>::dijkstraShortestPath(const T &s, Automovel* a) {
 		vertexSet[i]->dist = INT_INFINITY;
 		vertexSet[i]->known = false;
 	}
-
 	Vertex<T>* v = getVertex(s);
 	v->dist = 0;
 	v->known = true;
@@ -701,16 +700,30 @@ void Graph<T>::dijkstraShortestPath(const T &s, Automovel* a) {
  * @param r vector with all Refuel Stations
  */
 template <class T>
-void Graph<T>::getInitialPath(const T &s, Automovel* a, vector<RefuelStation> r) {
+void Graph<T>::getInitialPath(const T &x, const T &s, Automovel* a, vector<RefuelStation> r) {
 	Vertex<T>* dest = getVertex(s);
-	if(a->getBattery() <= 0)
-		return;
-	if(dest->path != NULL && a->checkDist(dest->dist)) {
-		getFullPath(dest->info,a);
-	}
-	else if(dest->path != NULL && !a->checkDist(dest->dist)) {
-		cout << "To arrive to: "<< dest->info << " you need to refuel" <<endl;
-		this->getNearbyStation(s,a,r);
+	Vertex<T>* start = getVertex(x);
+
+	cout << "Battery: " << a->getBattery() << endl;
+	this->dijkstraShortestPath(x,a);
+	cout << "Shortest Distance to arrive without Refueling: " << dest->getDist() << endl;
+	if(dest->getDist() == INT_MAX)
+		cout << "Impossible to arrive to the end" << endl;
+	else	{
+		if(a->getBattery() <= 0)
+			return;
+		float consume = a->getConsume();
+		float consumePerc = this->calculateConsume(dest->info, start->info);
+		a->setConsume(consume*consumePerc);
+		if(dest->path != NULL && a->checkDist(dest->dist)) {
+			a->setConsume(consume);
+			getFullPath(dest->info,a);
+		}
+		else if(dest->path != NULL && !a->checkDist(dest->dist)) {
+			cout << "To arrive to: "<< dest->info << " you need to refuel" <<endl;
+			a->setConsume(consume);
+			this->getNearbyStation(x,s,a,r);
+		}
 	}
 }
 
@@ -759,32 +772,41 @@ void Graph<T>::getFullPath(const T &s, Automovel* a) {
  * @param r vector with all Refuel Stations
  */
 template<class T>
-void Graph<T>::getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r) {
+void Graph<T>::getNearbyStation(const T &x, const T &s,Automovel* a, vector<RefuelStation> r) {
 	Vertex<T>* dest = getVertex(s);
-	Vertex<T>* point = getVertex(s);
-	while(point->path != NULL) {
-		point = point->path;
-	}
+	Vertex<T>* start = getVertex(x);
+
 	int distStation = INT_INFINITY;
 	int b;
 	int distEnd = INT_INFINITY;
-
 	for(unsigned int i = 0; i < r.size(); i++) {
 		if(this->getVertex(r[i].getId())->getDist() < distStation && !r[i].getPassed() && a->checkDist(this->getVertex(r[i].getId())->getDist())) {
-			int x = this->getVertex(r[i].getId())->getDist();
+			int y = this->getVertex(r[i].getId())->getDist();
 			this->dijkstraShortestPath(r[i].getId(),a);
-			if(dest->getDist() < distEnd) {
-				distStation = x;
-				distEnd = dest->getDist();
+			if(dest->getDist() +  y < distEnd) {
+				distStation = y;
+				distEnd = dest->getDist() + y;
 				b = i;
 			}
-			this->dijkstraShortestPath(point->getInfo(),a);
+			this->dijkstraShortestPath(x,a);
+
 		}
 	}
 	if(distStation == INT_INFINITY) {
-			cout << "You can´t reach the end at: " << calculateDist(point->getX(), point->getY(), dest->getX(), dest->getY()) << endl;
+//		float consume = a->getConsume();
+//		float consumePerc = this->calculateConsume(dest->info, start->info);
+//		a->setConsume(consume*consumePerc);
+//		if(!a->checkDist(dest->dist)) {
+//			a->setConsume(consume);
+		cout << "You can´t reach the end at: " << calculateDist(start->getX(), start->getY(), dest->getX(), dest->getY()) << endl;
 			this->getFullPath(dest->getInfo(),a);
 			return;
+//		}
+//		else {
+//			a->setConsume(consume);
+//			this->getFullPath(dest->getInfo(),a);
+//			return;
+//		}
 	}
 	cout << "Pass by Refuel Station: "<< r[b].getId() << " You need to travel: " << distStation << endl;
 	r[b].setPassed(true);
@@ -792,8 +814,7 @@ void Graph<T>::getNearbyStation(const T &s,Automovel* a, vector<RefuelStation> r
 	if(a->getBattery() <= 0)
 		return;
 	a->setBattery(100);
-	this->dijkstraShortestPath(r[b].getId(),a);
-	this->getInitialPath(s,a,r);
+	this->getInitialPath(r[b].getId(),s,a,r);
 
 }
 
