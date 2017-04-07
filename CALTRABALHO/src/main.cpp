@@ -925,8 +925,8 @@ int main() {
 //					a++;
 //				}
 //			}
-		}
-		if (i == 10) {
+//		}
+		else if (i == 10) {
 			int j = 0;
 			cout << "Shortest Graph - 1 | Medium Graph - 2 | Large Graph - 3"
 					<< endl;
@@ -937,10 +937,15 @@ int main() {
 				myGraph = CreateMediumGraph();
 			else if (j == 3)
 				myGraph = CreateLargeGraph();
+			else if (j == 4)
+				myGraph = CreateVeryLargeGraph();
+
 			else
 				cout << "Invalid Number" << endl;
-		} else if (i == 11) {
+		}
+		else if (i == 11) {
 			bool add = true;
+			cout << "1" << endl;
 			if (a.size() == 0)
 				cout << "No Vehicles available" << endl;
 			if (r.size() == 0)
@@ -1013,7 +1018,7 @@ int main() {
 				}
 			}
 		}
-
 	}
+}
 
 
