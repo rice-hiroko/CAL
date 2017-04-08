@@ -1,321 +1,147 @@
-28433727;Rua de Pinho Leal;False
-28593790;Rua de Tânger;False
-34882567;Avenida do Doutor Antunes Guimarães;True
-35012775;Rua do Conde da Covilhã;True
-36921792;Rua do Professor Mota Pinto;True
-36922146;Rua do Doutor Aarão de Lacerda;True
-36922147;Rua do Doutor Joaquim Costa;True
-36928564;Rua do Doutor Vasco Valente;True
-36928565;Rua de Rocha Peixoto;True
-36928619;Rua do Revilão;False
-36928623;;False
-36938667;Largo 3 de Fevereiro;True
-40769481;;False
-40769495;Travessa de Passos;False
-40769512;Rua de Pedro Homem de Melo;False
-40868760;Rua de António Aroso;False
-40868781;Avenida do Parque;False
-40869432;Rua de Vermoim;False
-40869433;Rua de Meinedo;False
-40869434;Rua de Gestaçô;False
-40869435;Rua de Candemil;False
-40869437;Rua de Baltazar Falcão;False
-40869444;Rua de António Aroso;False
-40869466;Rua de Roriz;False
-40869497;Rua de Bitarães;False
-40869500;Rua de Sande;False
-40869524;Rua de Meixomil;False
-40869529;Rua do Jornal de Notícias;True
-40869935;;True
-40869937;Rua de Miguel Torga;True
-40869938;Praceta do Professor Egas Moniz;True
-40869942;;True
-40869943;;True
-40870105;Rua da Cidade da Beira;True
-40870106;Rua da Cidade de Mindelo;True
-40871109;Rua de Veloso Salgado;True
-40871110;Rua de Francisco Oliveira Ferreira;True
-40871111;Praceta de Augusto Gomes;True
-40871112;Rua de José Fontana;True
-40871113;Rua de Robert Auzelle;False
-40900872;Rua dos Plátanos;False
-40900874;Rua dos Cedros;False
-40900881;Rua dos Choupos;False
-40900896;Rua do Furriel Guilherme Dantas;False
-40900907;Rua Lopo Soares de Albergaria;False
-40900908;Rua de Gaspar Coelho;False
-40900909;Rua do Doutor Alberto de Macedo;False
-40900913;Rua do Engenheiro Ezequiel de Campos;False
-40900914;Rua do Engenheiro Ezequiel de Campos;False
-40900918;Rua de Pereiró;False
-40900919;Avenida de Vasco da Gama;False
-40902256;Rua de Damão;False
-40902259;Rua da Guiné;False
-40902264;Rua de Macau;False
-40902267;Rua da Fonte da Moura;False
-40902277;Rua de Angola;False
-40902278;Rua de Moçambique;False
-40902279;Rua de Moçambique;False
-40902281;Rua de Moçambique;False
-40902283;Rua das Pereiras;False
-40902286;Rua das Nogueiras;False
-40902290;Rua de Angola;False
-40902295;Rua da Cidade de Luanda;False
-40902297;Rua da Fonte da Moura;False
-40902303;Praça dos Álamos;False
-40902305;Rua da Videira;False
-40902309;Rua das Tílias;False
-40902310;Rua dos Azinheiros;False
-40902315;Rua das Amendoeiras;False
-40902317;Rua das Acácias;False
-40902320;Rua das Figueiras;False
-40902323;Praça dos Álamos;False
-40902329;Rua das Macieiras;False
-41018353;Rua de Paços de Ferreira;False
-41018354;Rua de Felgueiras;False
-41018355;Rua de Valongo;False
-41018357;Rua de Amarante;False
-41018358;Rua de Santo Tirso;False
-41018359;Rua de Paredes;False
-41018360;Travessa de Penafiel;False
-41018361;Rua do Douro;False
-41018362;Rua de Marco de Canaveses;False
-41018363;;False
-41018364;Rua do Doutor Alberto de Macedo;False
-41018369;Rua Engenheiro Custódio Guimarães;False
-41018370;Rua Doutor Mário Cal Brandão;True
-41018371;Rua de Felizardo de Lima;False
-41018375;Rua do Doutor Melo Leote;False
-41018376;Rua de Campos Monteiro;False
-41018384;Rua do Doutor Alberto de Macedo;False
-41018403;Rua das Campinas;False
-41018406;Rua de Alberto de Serpa;False
-41018413;Rua do Doutor Alberto de Macedo;False
-41018414;Rua Direita das Campinas;True
-41092954;;True
-41092974;Rua de Penafiel;False
-41092980;Rua de Baião;False
-41092987;;False
-41092991;;False
-41092994;;False
-41093020;Rua do Douro;False
-41096615;Rua de Joaquim Leitão;True
-41096616;;True
-41096624;;True
-41096628;;True
-41096630;;True
-41096645;;True
-41096647;;True
-41096665;Rua de Felizardo de Lima;True
-51230333;Rua de Gaspar Coelho;True
-110801273;Rua da Vilarinha;True
-110801276;Rua da Vilarinha;True
-110801278;Praceta do Professor Egas Moniz;True
-135411468;Avenida da Boavista;False
-135411469;Avenida da Boavista;False
-151759608;;True
-151761735;;True
-151767668;;False
-151767671;;False
-151767675;Rua Nossa Senhora da Silva;True
-151781294;Rua de Teixeira de Vasconcellos;True
-151781295;Rua de Fernando Lopes Graça;True
-151781299;Rua de Vila Nova;True
-151781304;Rua de Soeiro Pereira Gomes;True
-151782300;Rua de Vila Nova;True
-151782301;Rua Alcaide de Faria;True
-151784035;Rua de Pelágio;False
-151785825;Rua Rafael Bordalo Pinheiro;False
-154333531;Rua de Martim de Freitas;False
-154333533;Rua de Martim de Freitas;True
-158337486;Rua de Álvaro Ferreira Alves;True
-160503647;Rua de Robert Auzelle;True
-160503757;;False
-160503793;Rua Professor Melo Adrião;False
-160503821;;False
-160503825;;False
-160503855;Avenida da Boavista;False
-167487354;Rua Martim Moniz;False
-167487355;Rua Martim Moniz;False
-167487386;Rua de Baltazar Falcão;False
-167487417;;False
-167487447;;False
-167487464;;False
-167487523;Rua de Joaquim Leitão;False
-167487524;;False
-167487527;;False
-172956374;Rua de Damão;False
-172956375;Rua de Damão;False
-172956437;;False
-172956458;Rua de Martim Moniz;True
-172956497;Rua de Vila Nova;True
-172956515;Rua da Vilarinha;True
-196331149;;False
-202832184;Rua do Doutor Correia Pinto;False
-202834671;Rua dos Olmeiros;False
-206384144;Praça da Pedra Verde;False
-206384145;Praça da Pedra Verde;False
-206384146;Praça da Pedra Verde;False
-206558226;Alameda Professor Ruy Luís Gomes;False
-206558227;;False
-206558228;;False
-206558229;Praceta Eduardo Soares;False
-213863904;;False
-224645473;Rua de Sagres;False
-224645476;Avenida da Boavista;False
-224645482;Avenida da Boavista;False
-224649279;Avenida da Boavista;False
-224649287;Avenida da Boavista;False
-226731899;;False
-251257483;Rua de São Bernardo;False
-251257485;Rua do Lidador;True
-251257491;Avenida do Doutor Antunes Guimarães;True
-251257494;Rua do Lidador;True
-251257503;Avenida do Doutor Antunes Guimarães;True
-251257504;Rua de Martim Moniz;True
-251257505;Rua da Preciosa;False
-283529432;Rua Professor Melo Adrião;True
-293779031;Rua de Paredes;True
-293779033;Rua da Maia;True
-309137435;Rua da Vilarinha;True
-309137439;Rua da Vilarinha;False
-309137442;Rua da Vilarinha;False
-360038970;Rua do Doutor Pedro de Sousa;False
-360851229;Rua de Paredes;False
-360937695;;False
-421569860;Praceta da Revista O Tripeiro;True
-423429119;Rua Eduardo Allen;True
-444769177;Travessa de Felgueiras;True
-444769178;Rua de Bouças;True
-444769179;Travessa de Paços de Ferreira;True
-444769180;;True
-444769181;;True
-444769183;;True
-444769185;Rua de Rocha Peixoto;False
-444769188;;False
-446760037;Travessa da Fonte da Moura;False
-446760039;Rua da Fonte da Moura;False
-446760044;Praceta Ernesto Veiga de Oliveira;False
-446878976;Rua do Doutor Alberto de Macedo;False
-446878977;Rua do Doutor Alberto de Macedo;False
-446878978;Rua do Doutor Alberto de Macedo;False
-446878979;Rua Direita das Campinas;False
-446878980;Rua de Rocha Peixoto;False
-446878981;;True
-446878982;Rua de Joaquim Leitão;False
-446878983;;False
-446887287;;False
-446887289;;False
-446887290;;False
-446887291;Travessa da Costibela;False
-446887292;;False
-446887293;;False
-446887294;;False
-446887295;;False
-446887296;;False
-446887297;;False
-446887298;;False
-446887299;;False
-446887300;;False
-446887302;;False
-446887303;;False
-446887304;;False
-448190650;Rua dos Heróis de Mucaba;False
-448190666;;False
-448190668;;False
-448190671;;False
-448190673;Rua de Lousada;False
-448190674;;False
-448515219;;False
-448515220;;False
-448515221;Rua do Furriel Guilherme Dantas;False
-448515222;;False
-448515223;;False
-448515224;;False
-448515225;;False
-448515226;;False
-448515227;;False
-448515229;;False
-448515231;;False
-448515232;Rua da Cidade de Mindelo;False
-448515233;;False
-448515234;;False
-448850573;Rua de Alberto de Serpa;False
-448860914;Rua de Martim Moniz;True
-448860915;Rua do Lidador;True
-449447635;;True
-449940691;;True
-449940692;;True
-449940693;;True
-449940694;;True
-449940695;;True
-449940696;Rua de Rocha Peixoto;False
-449975770;;False
-449978948;;False
-449978949;;False
-449978950;;False
-449978952;;False
-449978953;;False
-449978954;;False
-449978955;;False
-449978958;;False
-449978959;;False
-450398730;Travessa Armando Alves Tavares;False
-453828707;;False
-453849795;Rua da Cidade das Neves;False
-453850452;Rua de Dórdio Gomes;False
-453850453;Rua de Dórdio Gomes;False
-453850454;Rua de Joaquim Lopes;False
-453850455;Rua de Januário Godinho;False
-453850456;Rua de José Fontana;False
-453850457;Rua de Arménio Losa;False
-453850458;Rua de Manuel Marques;False
-453850459;Rua de Tomás Soller;False
-453851436;Rua da Vilarinha;False
-453851437;Rua de Paço de Sousa;False
-453851438;Rua Gustavo de Sousa;False
-453851713;Beco do Machado;False
-453851714;Praceta de José Régio;False
-453851715;Praceta de José Régio;False
-456415516;;False
-456420383;Praceta Eduardo Soares;False
-456420384;Rua Alcaide de Faria;False
-456420385;Rua Alcaide de Faria;False
-456420386;Rua Gonçalo Nunes de Faria;False
-456420387;Rua Gonçalo Nunes de Faria;False
-456420388;Rua de Soeiro Mendes;False
-458097942;;False
-458097943;;False
-458097944;;False
-458097946;;False
-458097947;;False
-458100286;;False
-462835703;Rua de António Aroso;False
-464734844;;False
-464734845;;False
-465444244;;False
-471513646;;False
-471513647;;False
-471513660;;False
-471513661;;False
-471513662;;False
-471513663;;False
-471513664;;False
-471513665;;False
-471513668;;False
-471513669;;False
-471513674;;False
-471513675;;False
-471513676;;False
-474896542;Praceta do Professor Egas Moniz;False
-474896544;;False
-474896545;;False
-480463878;;False
-480471298;Rua de Gaspar Coelho;False
-480471317;Rua das Tílias;False
-483102852;Rua dos Abetos;False
-483102853;Rua da Fonte da Moura;False
-483102855;Praceta do Professor Egas Moniz;False
-484608222;;False
-484608223;Praceta Eduardo Soares;False
-484608224;Praceta Eduardo Soares;False
+1;Rua de Fernão Vaz Dourado;False;;
+2;Rua de Pinho Leal;False;;
+18;Rua de Francisco Barreto;False;207,203;bus
+22;Rua de Dom Cristóvão da Gama;False;;
+24;Rua de Adriano Correia Oliveira;False;;
+27;Avenida do Marechal Gomes da Costa;False;203;bus
+36;Rua de Afonso Baldaia;False;;
+46;Rua do Professor Luís de Pina;False;504;bus
+50;Rua de Duarte Pacheco Pereira;False;;
+51;Rua de Tristão da Cunha;False;;
+52;Rua de Correia de Sá;False;;
+56;Rua de Tânger;False;;
+70;Largo de Tomé Pires;False;;
+73;Rua de Fez;True;;
+95;Rua de Fez;False;;
+96;Rua Dom Francisco de Almeida;False;;
+98;Rua de Rui Faleiro;False;;
+99;Rua do Doutor Vasco Valente;False;;
+110;Rua de Tristão da Cunha;False;;
+112;Rua de António Galvão;False;504;bus
+116;Rua de Fez;False;;
+117;;False;;
+118;;False;504;bus
+120;Rua de Paulo Dias de Novais;False;;
+122;Travessa de Passos;False;;
+136;Rua de Correia de Sá;False;;
+137;Rua de Pedro Homem de Melo;False;;
+144;Rua de Pedro Homem de Melo;False;;
+155;;False;;
+159;Rua de José Gomes Ferreira;False;;
+167;Rua Doutor António Cupertino de Miranda;True;;
+172;Rua de António Aroso;True;504;bus
+191;Avenida do Parque;True;;
+211;Rua de Vermoim;True;;
+212;Rua de Meinedo;False;;
+213;Rua de Gestaçô;False;;
+214;Rua de Candemil;False;;
+215;Rua de Baltazar Falcão;False;;
+221;Rua de António Aroso;False;;
+225;Rua de Roriz;False;;
+236;Rua de Bitarães;False;;
+243;Rua de Sande;False;;
+244;Rua de Meixomil;False;;
+253;;False;;
+256;Rua de Miguel Torga;False;;
+260;Praceta do Professor Egas Moniz;False;;
+269;;False;;
+286;;False;;
+288;Rua da Cidade da Beira;False;;
+300;Rua da Cidade de Mindelo;False;;
+311;Rua de Moçambique;False;;
+312;Rua da Fonte da Moura;False;;
+326;Rua do Crasto;False;;
+334;Rua de Santo Tirso;False;;
+339;Rua de Paredes;False;;
+340;Travessa de Penafiel;False;;
+341;Rua do Douro;False;;
+355;Rua de Penafiel;False;;
+359;Rua do Douro;False;;
+361;Rua da Vilarinha;True;;
+362;Rua da Vilarinha;True;;
+363;Praceta do Professor Egas Moniz;True;;
+364;Rua Alfredo Ferreira Faria;False;;
+377;Rua do Professor Rodolfo de Abreu;False;;
+394;Avenida da Boavista;False;;
+406;Avenida da Boavista;False;;
+421;;False;201;bus
+422;;False;;
+424;Avenida da Boavista;False;;
+427;;True;201;bus
+430;Rua Dom Francisco de Almeida;True;;
+431;Rua de Fez;False;;
+435;Largo de Tomé Pires;False;504;bus
+440;Rua de Fez;False;504;bus
+444;Rua de Pinho Leal;False;;
+451;Rua de António Galvão;False;504;bus
+456;Rua de Baltazar Falcão;False;;
+469;Praceta do Orfeão da Foz;False;;
+470;Praça de Dom Afonso V;False;504;bus
+479;;False;;
+481;;False;;
+484;Praceta do Orfeão da Foz;False;;
+497;;False;;
+501;;False;;
+505;Avenida do Marechal Gomes da Costa;False;207;bus
+507;Avenida do Marechal Gomes da Costa;False;;
+512;Rua de Sagres;False;504;bus
+514;Avenida da Boavista;False;504;bus
+523;Avenida da Boavista;False;;
+530;Avenida da Boavista;False;504;bus
+537;Rua de Fez;False;504;bus
+561;Avenida da Boavista;False;;
+577;Avenida do Doutor Antunes Guimarães;True;201;bus
+591;Avenida do Doutor Antunes Guimarães;True;504;bus
+593;Rua de Fez;True;504;bus
+595;Rua Dom Francisco de Almeida;False;;
+598;Rua de Santa Joana Princesa;False;;
+599;Rua de Paredes;False;;
+600;Rua da Maia;False;;
+601;Rua da Vilarinha;True;;
+604;Rua da Vilarinha;False;;
+617;Rua de Paredes;False;;
+618;Avenida do Marechal Gomes da Costa;False;;
+619;;False;;
+653;;False;;
+675;;False;;
+685;Praceta da Revista O Tripeiro;True;;
+690;;True;;
+693;Rua da Fonte da Moura;False;;
+700;Praceta Ernesto Veiga de Oliveira;False;;
+708;;False;;
+712;Rua de Lousada;False;;
+714;;False;;
+716;;False;;
+718;Rua da Cidade de Mindelo;False;;
+721;;False;;
+722;;False;;
+723;;False;;
+736;;False;;
+740;Rua da Vilarinha;False;;
+744;Rua de Paço de Sousa;False;504;bus
+750;Rua Gustavo de Sousa;False;;
+776;;False;;
+784;;False;;
+790;;False;;
+794;;False;;
+802;;False;;
+806;;False;;
+807;Avenida do Parque;False;;
+815;Rua de António Aroso;False;504;bus
+818;;False;;
+821;;False;;
+824;;False;;
+828;Rua do Professor Luís de Pina;False;504;bus
+833;Praceta do Professor Egas Moniz;False;;
+843;Rua de Fez;False;504;bus
+846;;False;;
+852;;False;;
+856;;False;;
+857;;False;;
+858;;False;;
+859;Rua de Sagres;False;504;bus
+867;Rua de Correia de Sá;False;;
+872;Rua de Duarte Pacheco Pereira;False;;
+876;Rua da Fonte da Moura;False;;
+884;Praceta do Professor Egas Moniz;False;;
+889;;False;;

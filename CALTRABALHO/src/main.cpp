@@ -622,7 +622,7 @@ Graph<int> CreateVeryLargeGraph() {
 	ifstream inFile;
 
 	//Ler o ficheiro nos.txt
-	inFile.open("Points.txt");
+	inFile.open("pontos.txt");
 
 	if (!inFile) {
 		cerr << "Unable to open file pontos.txt";
@@ -634,28 +634,23 @@ Graph<int> CreateVeryLargeGraph() {
 	if (inFile.is_open()) {
 		while (inFile.good()) {
 			int id;
-			double latitude, longitude;
-			string id_s, lat_s, lon_s;
-
-			getline(inFile, id_s, ';');
-			getline(inFile, lat_s, ';');
-			getline(inFile, lon_s, ';');
-			inFile.ignore(1000, '\n');
-
+			double x, y;
+			char aux;
+			string str;
+			getline(inFile, str);
+			stringstream ss(str);
+			ss >> id >> aux >> x >> aux >> y;
 			//converts from string to int/double
-			id = atoi(id_s.c_str());
-			latitude = atof(lat_s.c_str());
-			longitude = atof(lon_s.c_str());
 
 			if (id == 0)
 				break;
-			myGraph.addVertex(id, calculateX(longitude,800), calculateY(latitude,800,700));
+			myGraph.addVertex(id, x, y);
 		}
 	}
 	inFile.close();
 
 	//Ler o ficheiro arestas.txt
-	inFile.open("Edges.txt");
+	inFile.open("arestas.txt");
 
 	if (!inFile) {
 		cerr << "Unable to open file arestas.txt";
@@ -665,23 +660,21 @@ Graph<int> CreateVeryLargeGraph() {
 
 	if (inFile.is_open()) {
 		while (inFile.good()) {
-			int sourc_id, dest_id;
-			string r_s, s_s, d_s; //road_string, sourc_string, dest_string
+			int sourc_id, dest_id, road_id;
 			//bool found = false;
 
-			getline(inFile, r_s, ';');
-			getline(inFile, s_s, ';');
-			getline(inFile, d_s, ';');
-			inFile.ignore(10, '\n');
-
-			//converts from string to double
-			sourc_id = atoi(s_s.c_str());
-			dest_id = atof(d_s.c_str());
+			char aux;
+			string str;
+			getline(inFile, str);
+			stringstream ss(str);
+			ss >> road_id >> aux >> sourc_id >> aux >> dest_id;
 
 			if (sourc_id == 0)
 				break;
 
 			myGraph.addEdge(sourc_id, dest_id);
+			myGraph.addEdge(dest_id, sourc_id);
+
 		}
 	}
 
