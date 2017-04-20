@@ -616,6 +616,10 @@ Graph<int> CreateLargeGraph() {
 	return myGraph;
 }
 
+/**
+ * Graph with 834 Vertexs
+ * @return the created graph
+ */
 Graph<int> CreateVeryLargeGraph() {
 	Graph<int> myGraph;
 
@@ -995,7 +999,7 @@ int main() {
 						}
 					}
 					int nTimeStart = GetMilliCount();
-					myGraph.getInitialPath(start, end, &a[x], r);
+					myGraph.getInitialPath(start, end, &a[x], r, gv);
 					cout << "Time Elapsed To Calculate: "
 							<< GetMilliSpan(nTimeStart) << endl;
 					for (unsigned int k = 0; k < r.size(); k++) {
